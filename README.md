@@ -1,6 +1,6 @@
-# BedRock
+# RRD API
 
-BedRock, is a boilerplated API built on Laravel, and intended to be used in-house
+rrd-api, is a boilerplated API built on Laravel, and intended to be used in-house
 in the hopes to accelerate the initial ground-work of all our products.
 
 ## Version

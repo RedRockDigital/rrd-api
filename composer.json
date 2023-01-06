@@ -1,11 +1,11 @@
 {
-    "name": "redrockdigital/bedrock",
-    "description": "Our in-house BoilerPlated API BedRock",
+    "name": "redrockdigital/rrd-api",
+    "description": "Our in-house BoilerPlated API",
     "keywords": [
         "redrockdigital",
         "bedrock"
     ],
-    "homepage": "https://github.com/redrockdigital/bedrock",
+    "homepage": "https://github.com/redrockdigital/rrd-api",
     "license": "MIT",
     "type": "library",
     "authors": [
