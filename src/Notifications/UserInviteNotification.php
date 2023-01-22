@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Notifications;
+namespace RedRockDigital\Api\Notifications;
 
-use App\Models\Team;
-use App\Models\User;
+use RedRockDigital\Api\Models\Team;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;

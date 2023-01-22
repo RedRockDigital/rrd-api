@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Payments\Providers;
+namespace RedRockDigital\Api\Services\Payments\Providers;
 
-use App\Models\Team;
-use App\Models\User;
-use App\Services\Payments\PaymentsInterface;
-use App\Services\Payments\Providers\Stripe\Exceptions\CustomerNotLocatedException;
+use RedRockDigital\Api\Models\Team;
+use RedRockDigital\Api\Models\User;
+use RedRockDigital\Api\Services\Payments\PaymentsInterface;
+use RedRockDigital\Api\Services\Payments\Providers\Stripe\Exceptions\CustomerNotLocatedException;
 
 /**
  * Class Providers

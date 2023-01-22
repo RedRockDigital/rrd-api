@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Billing;
+namespace RedRockDigital\Api\Http\Resources\Billing;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;

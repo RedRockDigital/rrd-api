@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Actions\Me;
+namespace RedRockDigital\Api\Actions\Me;
 
-use App\Models\Group;
-use App\Models\Team;
-use App\Models\User;
+use RedRockDigital\Api\Models\Group;
+use RedRockDigital\Api\Models\Team;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Str;
 

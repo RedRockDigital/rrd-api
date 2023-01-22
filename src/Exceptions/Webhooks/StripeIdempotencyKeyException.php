@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions\Webhooks;
+namespace RedRockDigital\Api\Exceptions\Webhooks;
 
 use Exception;
 use Illuminate\Http\Response;
@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 /**
  * Class StripeIdempotencyKeyException
  *
- * @package App\Exceptions\Webhooks
+ * @package RedRockDigital\Api\Exceptions\Webhooks
  */
 class StripeIdempotencyKeyException extends Exception
 {

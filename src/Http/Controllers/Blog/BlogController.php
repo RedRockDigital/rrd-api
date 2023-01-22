@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Blog;
+namespace RedRockDigital\Api\Http\Controllers\Blog;
 
-use App\Http\Controllers\Controller;
-use App\Models\Blog;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Models\Blog;
 use Illuminate\Http\JsonResponse;
 
 class BlogController extends Controller

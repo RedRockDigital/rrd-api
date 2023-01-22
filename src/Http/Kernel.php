@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http;
+namespace RedRockDigital\Api\Http;
 
-use App\Http\Middleware\{Authenticate,
+use RedRockDigital\Api\Http\Middleware\{Authenticate,
     EncryptCookies,
     PreventRequestsDuringMaintenance,
     RedirectIfAuthenticated,
@@ -41,7 +41,7 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-        // \App\Http\Middleware\TrustHosts::class,
+        // \RedRockDigital\Api\Http\Middleware\TrustHosts::class,
         TrustProxies::class,
         HandleCors::class,
         PreventRequestsDuringMaintenance::class,

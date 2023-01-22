@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Middleware\Webhooks;
+namespace RedRockDigital\Api\Http\Middleware\Webhooks;
 
-use App\Exceptions\Webhooks\StripeIdempotencyKeyException;
-use App\Models\Webhook;
+use RedRockDigital\Api\Exceptions\Webhooks\StripeIdempotencyKeyException;
+use RedRockDigital\Api\Models\Webhook;
 use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;

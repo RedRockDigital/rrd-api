@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Services\Payments\Providers\Stripe;
+namespace RedRockDigital\Api\Services\Payments\Providers\Stripe;
 
-use App\Models\{
+use RedRockDigital\Api\Models\{
     Subscription,
     Team
 };
-use App\Services\Payments\Providers\Provider;
-use App\Services\Payments\Providers\Stripe\Enums\StripeMode;
-use App\Services\Payments\Providers\Stripe\Exceptions\{
+use RedRockDigital\Api\Services\Payments\Providers\Provider;
+use RedRockDigital\Api\Services\Payments\Providers\Stripe\Enums\StripeMode;
+use RedRockDigital\Api\Services\Payments\Providers\Stripe\Exceptions\{
     AddSubscriptionFailedException,
     ChangeSubscriptionFailedException,
     CustomerNotLocatedException,

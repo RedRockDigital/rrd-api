@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RedRockDigital\Api\Http\Controllers;
 
-use App\Http\Requests\Webhooks\StripeWebhookRequest;
-use App\Models\Webhook;
+use RedRockDigital\Api\Http\Requests\Webhooks\StripeWebhookRequest;
+use RedRockDigital\Api\Models\Webhook;
 use Illuminate\Http\JsonResponse;
 
 /**

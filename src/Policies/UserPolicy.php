@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Policies;
+namespace RedRockDigital\Api\Policies;
 
-use App\Models\User;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Console\Commands;
+namespace RedRockDigital\Api\Console\Commands;
 
-use App\Models\User;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 

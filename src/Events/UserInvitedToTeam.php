@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Events;
+namespace RedRockDigital\Api\Events;
 
-use App\Models\Team;
-use App\Models\User;
+use RedRockDigital\Api\Models\Team;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 

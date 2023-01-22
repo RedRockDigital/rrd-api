@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace RedRockDigital\Api\Traits;
 
 use Exception;
 use Illuminate\Support\Str;

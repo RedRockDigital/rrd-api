@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Traits;
+namespace RedRockDigital\Api\Traits;
 
-use App\Models\Group;
+use RedRockDigital\Api\Models\Group;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**

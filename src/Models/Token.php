@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace RedRockDigital\Api\Models;
 
-use App\Traits\HasModelRoutes;
+use RedRockDigital\Api\Traits\HasModelRoutes;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
@@ -10,7 +10,7 @@ use Laravel\Passport\Client;
 use Laravel\Passport\Token as PassportToken;
 
 /**
- * App\Models\Token
+ * RedRockDigital\Api\Models\Token
  *
  * @property string $id
  * @property string $user_id

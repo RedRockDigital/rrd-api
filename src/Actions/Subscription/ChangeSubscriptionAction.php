@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Actions\Subscription;
+namespace RedRockDigital\Api\Actions\Subscription;
 
-use App\Models\Team;
-use App\Services\Payments\Payments;
+use RedRockDigital\Api\Models\Team;
+use RedRockDigital\Api\Services\Payments\Payments;
 
 /**
  * Final ChangeSubscriptionAction

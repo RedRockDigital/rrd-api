@@ -2,7 +2,7 @@
 
 /** @noinspection PhpUndefinedMethodInspection */
 
-namespace App\Http\Controllers;
+namespace RedRockDigital\Api\Http\Controllers;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;

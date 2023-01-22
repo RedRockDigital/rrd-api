@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Me;
+namespace RedRockDigital\Api\Http\Resources\Me;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

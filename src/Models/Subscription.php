@@ -2,7 +2,7 @@
 
 /** @noinspection PhpMissingFieldTypeInspection */
 
-namespace App\Models;
+namespace RedRockDigital\Api\Models;
 
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 use Laravel\Cashier\SubscriptionItem;
 
 /**
- * App\Models\Subscription
+ * RedRockDigital\Api\Models\Subscription
  *
  * @property int                                $id
  * @property string                             $team_id

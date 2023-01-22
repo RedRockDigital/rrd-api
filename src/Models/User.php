@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace RedRockDigital\Api\Models;
 
-use App\Events\UserUpdated;
-use App\Models\Pivot\TeamUser;
-use App\Notifications\VerifyEmailNotification;
-use App\Traits\{
+use RedRockDigital\Api\Events\UserUpdated;
+use RedRockDigital\Api\Models\Pivot\TeamUser;
+use RedRockDigital\Api\Notifications\VerifyEmailNotification;
+use RedRockDigital\Api\Traits\{
     HasGroup,
     HasInformable,
     HasModelRoutes,
@@ -43,7 +43,7 @@ use Laravel\Passport\{
 };
 
 /**
- * App\Models\User
+ * RedRockDigital\Api\Models\User
  *
  * @property string                                                     $id
  * @property string|null                                                $current_team_id

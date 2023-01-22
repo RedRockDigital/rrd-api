@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace RedRockDigital\Api\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Sentry\Laravel\Integration;

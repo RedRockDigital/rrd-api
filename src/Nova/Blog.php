@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Nova;
+namespace RedRockDigital\Api\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\{
@@ -23,9 +23,9 @@ class Blog extends Resource
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Blog>
+     * @var class-string<\RedRockDigital\Api\Models\Blog>
      */
-    public static string $model = \App\Models\Blog::class;
+    public static string $model = \RedRockDigital\Api\Models\Blog::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

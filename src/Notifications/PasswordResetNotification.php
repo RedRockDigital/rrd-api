@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Notifications;
+namespace RedRockDigital\Api\Notifications;
 
-use App\Models\PasswordReset;
+use RedRockDigital\Api\Models\PasswordReset;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Rules;
+namespace RedRockDigital\Api\Rules;
 
-use App\Models\Group;
+use RedRockDigital\Api\Models\Group;
 use Illuminate\Contracts\Validation\InvokableRule;
 use Illuminate\Translation\PotentiallyTranslatedString;
 

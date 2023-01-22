@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Me;
+namespace RedRockDigital\Api\Http\Requests\Me;
 
-use App\Enums\InformEnums;
+use RedRockDigital\Api\Enums\InformEnums;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

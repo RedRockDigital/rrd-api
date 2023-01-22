@@ -2,7 +2,7 @@
 
 /** @noinspection PhpMissingFieldTypeInspection */
 
-namespace App\Services\Payments\Providers\Stripe\Exceptions;
+namespace RedRockDigital\Api\Services\Payments\Providers\Stripe\Exceptions;
 
 use Exception;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Me;
+namespace RedRockDigital\Api\Actions\Me;
 
-use App\Models\PasswordReset;
+use RedRockDigital\Api\Models\PasswordReset;
 
 class ResetPassword
 {

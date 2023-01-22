@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace RedRockDigital\Api\Providers;
 
-use App\Models\Group;
+use RedRockDigital\Api\Models\Group;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;

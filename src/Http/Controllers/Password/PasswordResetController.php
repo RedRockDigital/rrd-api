@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Password;
+namespace RedRockDigital\Api\Http\Controllers\Password;
 
-use App\Actions\Me\ResetPassword;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Password\PasswordResetRequest;
+use RedRockDigital\Api\Actions\Me\ResetPassword;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Requests\Password\PasswordResetRequest;
 use Illuminate\Http\JsonResponse;
 
 class PasswordResetController extends Controller

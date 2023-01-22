@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace RedRockDigital\Api\Models;
 
-use App\Traits\HasUuid;
+use RedRockDigital\Api\Traits\HasUuid;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Informable
+ * RedRockDigital\Api\Models\Informable
  *
  * @property string              $id
  * @property string              $name

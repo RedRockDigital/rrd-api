@@ -2,9 +2,9 @@
 
 /** @noinspection PhpMissingFieldTypeInspection */
 
-namespace App\Models;
+namespace RedRockDigital\Api\Models;
 
-use App\Traits\HasUuid;
+use RedRockDigital\Api\Traits\HasUuid;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Database\Factories\PasswordResetFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,7 +18,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 
 /**
- * App\Models\PasswordReset
+ * RedRockDigital\Api\Models\PasswordReset
  *
  * @property string $id
  * @property string $user_id

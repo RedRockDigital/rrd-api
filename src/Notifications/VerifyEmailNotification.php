@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications;
+namespace RedRockDigital\Api\Notifications;
 
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;

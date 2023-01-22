@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Providers;
+namespace RedRockDigital\Api\Providers;
 
-use App\Events\UserUpdated;
-use App\Events\{
+use RedRockDigital\Api\Events\UserUpdated;
+use RedRockDigital\Api\Events\{
     TeamCreated,
     UserInvitedToTeam,
 };
-use App\Listeners\{
+use RedRockDigital\Api\Listeners\{
     SendEmailChangedVerificationNotification,
     SendUserInviteNotification,
     Stripe\StripeCustomerCreationListener,
     UpdateLoggedInAt
 };
-use App\Models\Webhook;
-use App\Observers\WebhookObserver;
+use RedRockDigital\Api\Models\Webhook;
+use RedRockDigital\Api\Observers\WebhookObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;

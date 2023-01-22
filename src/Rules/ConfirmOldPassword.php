@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Rules;
+namespace RedRockDigital\Api\Rules;
 
-use App\Models\User;
+use RedRockDigital\Api\Models\User;
 use Closure;
 use Illuminate\Contracts\Validation\InvokableRule;
 use Illuminate\Support\Facades\Hash;

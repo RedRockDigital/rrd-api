@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Me;
+namespace RedRockDigital\Api\Http\Controllers\Me;
 
-use App\Actions\Me\UpdateInformAction;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Me\UpdateInformableRequest;
-use App\Http\Resources\InformableResource;
+use RedRockDigital\Api\Actions\Me\UpdateInformAction;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Requests\Me\UpdateInformableRequest;
+use RedRockDigital\Api\Http\Resources\InformableResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

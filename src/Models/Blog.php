@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace RedRockDigital\Api\Models;
 
-use App\Traits\HasUuid;
+use RedRockDigital\Api\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

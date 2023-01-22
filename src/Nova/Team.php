@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Nova;
+namespace RedRockDigital\Api\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\{
@@ -19,9 +19,9 @@ class Team extends Resource
     /**
      * The model the resource corresponds to.
      *
-     * @var class-string<\App\Models\Team>
+     * @var class-string<\RedRockDigital\Api\Models\Team>
      */
-    public static string $model = \App\Models\Team::class;
+    public static string $model = \RedRockDigital\Api\Models\Team::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

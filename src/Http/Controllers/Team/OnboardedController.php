@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Team;
+namespace RedRockDigital\Api\Http\Controllers\Team;
 
-use App\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 
 class OnboardedController extends Controller

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Nova\Metrics;
+namespace RedRockDigital\Api\Nova\Metrics;
 
-use App\Models\Team;
+use RedRockDigital\Api\Models\Team;
 use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;

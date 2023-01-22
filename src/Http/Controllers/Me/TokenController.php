@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Me;
+namespace RedRockDigital\Api\Http\Controllers\Me;
 
-use App\Actions\Me\CreateToken;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Me\CreateTokenRequest;
+use RedRockDigital\Api\Actions\Me\CreateToken;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Requests\Me\CreateTokenRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Laravel\Passport\Passport;

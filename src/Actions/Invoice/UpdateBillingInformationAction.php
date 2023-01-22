@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Invoice;
+namespace RedRockDigital\Api\Actions\Invoice;
 
-use App\Models\Team;
+use RedRockDigital\Api\Models\Team;
 
 /**
  * Final UpdateBillingInformationAction

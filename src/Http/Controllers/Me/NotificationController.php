@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Me;
+namespace RedRockDigital\Api\Http\Controllers\Me;
 
-use App\Actions\Me\MarkNotificationAsRead;
-use App\Http\Controllers\Controller;
+use RedRockDigital\Api\Actions\Me\MarkNotificationAsRead;
+use RedRockDigital\Api\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

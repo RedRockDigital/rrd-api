@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace RedRockDigital\Api\Exceptions;
 
 use Exception;
 use Illuminate\Http\Response;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Log;
+namespace RedRockDigital\Api\Log;
 
 use Illuminate\Log\Logger;
 

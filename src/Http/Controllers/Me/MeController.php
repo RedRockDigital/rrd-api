@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Me;
+namespace RedRockDigital\Api\Http\Controllers\Me;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Me\UpdateMeRequest;
-use App\Http\Resources\MeResource;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Requests\Me\UpdateMeRequest;
+use RedRockDigital\Api\Http\Resources\MeResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

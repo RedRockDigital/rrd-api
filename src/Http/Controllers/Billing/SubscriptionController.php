@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Billing;
+namespace RedRockDigital\Api\Http\Controllers\Billing;
 
-use App\Actions\Subscription\CancelSubscriptionAction;
-use App\Actions\Subscription\ChangeSubscriptionAction;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Billing\{
+use RedRockDigital\Api\Actions\Subscription\CancelSubscriptionAction;
+use RedRockDigital\Api\Actions\Subscription\ChangeSubscriptionAction;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Requests\Billing\{
     SubscriptionChangeRequest
 };
-use App\Http\Resources\Billing\SubscriptionShowResource;
-use App\Services\Payments\Payments;
+use RedRockDigital\Api\Http\Resources\Billing\SubscriptionShowResource;
+use RedRockDigital\Api\Services\Payments\Payments;
 use Illuminate\Http\JsonResponse;
 
 /**

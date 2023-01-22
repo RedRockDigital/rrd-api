@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Password;
+namespace RedRockDigital\Api\Http\Requests\Password;
 
-use App\Rules\VerifyUsernameForPasswordReset;
+use RedRockDigital\Api\Rules\VerifyUsernameForPasswordReset;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;

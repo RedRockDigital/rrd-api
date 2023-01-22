@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace RedRockDigital\Api\Models;
 
-use App\Traits\HasUuid;
+use RedRockDigital\Api\Traits\HasUuid;
 use ArrayAccess;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -13,7 +13,7 @@ use Illuminate\Support\Carbon;
 use Spatie\Tags\HasTags;
 
 /**
- * App\Models\Webhook
+ * RedRockDigital\Api\Models\Webhook
  *
  * @property string           $id
  * @property string           $originator

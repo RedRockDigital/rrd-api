@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Billing;
+namespace RedRockDigital\Api\Http\Resources\Billing;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Laravel\Cashier\Subscription;
 
 /**
  * @mixin Subscription
- * @mixin \App\Models\Subscription
+ * @mixin \RedRockDigital\Api\Models\Subscription
  */
 class SubscriptionShowResource extends JsonResource
 {

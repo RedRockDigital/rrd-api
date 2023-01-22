@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace RedRockDigital\Api\Traits;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Collection;

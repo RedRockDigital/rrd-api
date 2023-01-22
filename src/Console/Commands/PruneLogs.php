@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace RedRockDigital\Api\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\{

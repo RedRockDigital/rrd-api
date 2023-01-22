@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Nova\Dashboards;
+namespace RedRockDigital\Api\Nova\Dashboards;
 
-use App\Nova\Metrics\{
+use RedRockDigital\Api\Nova\Metrics\{
     ActiveSubscriptions,
     CancelledSubscriptions,
     NewTeams,

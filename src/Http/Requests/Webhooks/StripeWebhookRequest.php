@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Webhooks;
+namespace RedRockDigital\Api\Http\Requests\Webhooks;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;

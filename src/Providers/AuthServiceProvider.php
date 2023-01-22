@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace RedRockDigital\Api\Providers;
 
-use App\Models\Token;
+use RedRockDigital\Api\Models\Token;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
 
@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        // 'RedRockDigital\Api\Models\Model' => 'RedRockDigital\Api\Policies\ModelPolicy',
     ];
 
     /**

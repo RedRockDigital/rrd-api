@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RedRockDigital\Api\Http\Controllers;
 
-use App\Actions\Me\CreateUser;
-use App\Http\Requests\RegisterRequest;
+use RedRockDigital\Api\Actions\Me\CreateUser;
+use RedRockDigital\Api\Http\Requests\RegisterRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\{
+use RedRockDigital\Api\Models\{
     Team,
     User
 };

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Team;
+namespace RedRockDigital\Api\Actions\Team;
 
-use App\Models\{
+use RedRockDigital\Api\Models\{
     Group,
     Team,
 };

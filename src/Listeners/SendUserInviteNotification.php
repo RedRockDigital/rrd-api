@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Listeners;
+namespace RedRockDigital\Api\Listeners;
 
-use App\Events\UserInvitedToTeam;
-use App\Notifications\UserInviteNotification;
+use RedRockDigital\Api\Events\UserInvitedToTeam;
+use RedRockDigital\Api\Notifications\UserInviteNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class SendUserInviteNotification implements ShouldQueue

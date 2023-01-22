@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Team;
+namespace RedRockDigital\Api\Http\Requests\Team;
 
-use App\Rules\CheckGroupCanBeUpdated;
+use RedRockDigital\Api\Rules\CheckGroupCanBeUpdated;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Contact;
+namespace RedRockDigital\Api\Http\Requests\Contact;
 
 use Illuminate\Foundation\Http\FormRequest;
 

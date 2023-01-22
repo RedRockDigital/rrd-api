@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace RedRockDigital\Api\Models;
 
-use App\Events\TeamCreated;
-use App\Models\Pivot\TeamUser;
-use App\Traits\HasInformable;
-use App\Traits\HasUuid;
+use RedRockDigital\Api\Events\TeamCreated;
+use RedRockDigital\Api\Models\Pivot\TeamUser;
+use RedRockDigital\Api\Traits\HasInformable;
+use RedRockDigital\Api\Traits\HasUuid;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Database\Factories\TeamFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,7 +25,7 @@ use Illuminate\Support\{
 use Laravel\Cashier\Billable;
 
 /**
- * App\Models\Team
+ * RedRockDigital\Api\Models\Team
  *
  * @property string                         $id
  * @property string|null                    $owner_id

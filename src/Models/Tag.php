@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace RedRockDigital\Api\Models;
 
-use App\Traits\HasUuid;
+use RedRockDigital\Api\Traits\HasUuid;
 use Spatie\Tags\Tag as TagModel;
 
 class Tag extends TagModel

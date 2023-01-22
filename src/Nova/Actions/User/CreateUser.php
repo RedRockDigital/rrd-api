@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Nova\Actions\User;
+namespace RedRockDigital\Api\Nova\Actions\User;
 
-use App\Actions\Me\CreateUser as CreateUserAction;
+use RedRockDigital\Api\Actions\Me\CreateUser as CreateUserAction;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;

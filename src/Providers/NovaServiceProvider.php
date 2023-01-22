@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace RedRockDigital\Api\Providers;
 
-use App\Nova\Dashboards\Main;
+use RedRockDigital\Api\Nova\Dashboards\Main;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;

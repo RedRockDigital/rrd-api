@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Resources\Team;
+namespace RedRockDigital\Api\Http\Resources\Team;
 
-use App\Models\User;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Actions\Me;
+namespace RedRockDigital\Api\Actions\Me;
 
-use App\Enums\InformEnums;
-use App\Models\User;
+use RedRockDigital\Api\Enums\InformEnums;
+use RedRockDigital\Api\Models\User;
 
 class UpdateInformAction
 {

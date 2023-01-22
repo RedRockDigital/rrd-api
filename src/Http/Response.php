@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http;
+namespace RedRockDigital\Api\Http;
 
 use Illuminate\Http\JsonResponse;
 

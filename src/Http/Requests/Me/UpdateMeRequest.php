@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Me;
+namespace RedRockDigital\Api\Http\Requests\Me;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;

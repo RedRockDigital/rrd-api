@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace RedRockDigital\Api\Console\Commands;
 
 use Database\Seeders\Local\LocalSeeder;
 use Database\Seeders\Production\ProductionSeeder;

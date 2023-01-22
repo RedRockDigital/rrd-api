@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners;
+namespace RedRockDigital\Api\Listeners;
 
-use App\Models\User;
+use RedRockDigital\Api\Models\User;
 use Laravel\Passport\Events\AccessTokenCreated;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;

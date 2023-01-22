@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Actions\Team;
+namespace RedRockDigital\Api\Actions\Team;
 
-use App\Events\UserInvitedToTeam;
-use App\Http\Requests\Team\CreateUserRequest;
-use App\Models\User;
+use RedRockDigital\Api\Events\UserInvitedToTeam;
+use RedRockDigital\Api\Http\Requests\Team\CreateUserRequest;
+use RedRockDigital\Api\Models\User;
 
 class InviteUser
 {

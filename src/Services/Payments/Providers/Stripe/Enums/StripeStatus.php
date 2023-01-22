@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Payments\Providers\Stripe\Enums;
+namespace RedRockDigital\Api\Services\Payments\Providers\Stripe\Enums;
 
 enum StripeStatus: string
 {

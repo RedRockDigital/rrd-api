@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace RedRockDigital\Api\Http\Resources;
 
-use App\Http\Resources\{
+use RedRockDigital\Api\Http\Resources\{
     Me\MyTeamsResource,
     Team\TeamResource
 };
-use App\Models\User;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Newsletter;
+namespace RedRockDigital\Api\Http\Controllers\Newsletter;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Newsletter\CreateSubscribeRequest;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Requests\Newsletter\CreateSubscribeRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
 use Spatie\Newsletter\Facades\Newsletter;

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Payments;
+namespace RedRockDigital\Api\Services\Payments;
 
-use App\Models\Team;
+use RedRockDigital\Api\Models\Team;
 use Illuminate\Database\Eloquent\Model;
 
 /**

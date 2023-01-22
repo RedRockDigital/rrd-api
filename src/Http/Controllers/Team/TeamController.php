@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Team;
+namespace RedRockDigital\Api\Http\Controllers\Team;
 
-use App\Actions\Team\CreateTeam;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Team\CreateTeamRequest;
-use App\Http\Requests\Team\UpdateTeamRequest;
-use App\Models\Team;
+use RedRockDigital\Api\Actions\Team\CreateTeam;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Requests\Team\CreateTeamRequest;
+use RedRockDigital\Api\Http\Requests\Team\UpdateTeamRequest;
+use RedRockDigital\Api\Models\Team;
 use Illuminate\Http\JsonResponse;
 
 class TeamController extends Controller

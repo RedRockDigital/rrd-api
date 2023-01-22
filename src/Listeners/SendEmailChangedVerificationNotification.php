@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Listeners;
+namespace RedRockDigital\Api\Listeners;
 
-use App\Events\UserUpdated;
-use App\Notifications\VerifyEmailNotification;
+use RedRockDigital\Api\Events\UserUpdated;
+use RedRockDigital\Api\Notifications\VerifyEmailNotification;
 
 class SendEmailChangedVerificationNotification
 {

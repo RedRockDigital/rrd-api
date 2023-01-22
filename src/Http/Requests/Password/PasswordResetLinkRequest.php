@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Password;
+namespace RedRockDigital\Api\Http\Requests\Password;
 
 use Illuminate\Foundation\Http\FormRequest;
 

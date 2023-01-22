@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Nova;
+namespace RedRockDigital\Api\Nova;
 
-use App\Nova\Actions\User\{
+use RedRockDigital\Api\Nova\Actions\User\{
     CreateUser,
     RequestPasswordReset,
     SuspensionUser
@@ -19,7 +19,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 /**
  * Class User
  *
- * @property-read \App\Models\User $resource
+ * @property-read \RedRockDigital\Api\Models\User $resource
  */
 class User extends Resource
 {
@@ -28,7 +28,7 @@ class User extends Resource
      *
      * @var string
      */
-    public static string $model = \App\Models\User::class;
+    public static string $model = \RedRockDigital\Api\Models\User::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

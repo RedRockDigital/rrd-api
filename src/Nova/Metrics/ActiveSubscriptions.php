@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Nova\Metrics;
+namespace RedRockDigital\Api\Nova\Metrics;
 
-use App\Models\Subscription;
+use RedRockDigital\Api\Models\Subscription;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
 use Laravel\Nova\Metrics\ValueResult;

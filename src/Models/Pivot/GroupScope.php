@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Pivot;
+namespace RedRockDigital\Api\Models\Pivot;
 
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
- * App\Models\Pivot\GroupScope
+ * RedRockDigital\Api\Models\Pivot\GroupScope
  *
  * @property string $group_id
  * @property string $scope_id

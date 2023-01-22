@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Actions\Me;
+namespace RedRockDigital\Api\Actions\Me;
 
-use App\Models\PasswordReset;
-use App\Models\User;
-use App\Notifications\PasswordResetNotification;
+use RedRockDigital\Api\Models\PasswordReset;
+use RedRockDigital\Api\Models\User;
+use RedRockDigital\Api\Notifications\PasswordResetNotification;
 
 class SendPasswordReset
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Rules;
+namespace RedRockDigital\Api\Rules;
 
-use App\Models\PasswordReset;
+use RedRockDigital\Api\Models\PasswordReset;
 use Illuminate\Contracts\Validation\Rule;
 
 class VerifyUsernameForPasswordReset implements Rule

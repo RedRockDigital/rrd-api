@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Team;
+namespace RedRockDigital\Api\Actions\Team;
 
-use App\Models\{Group, User};
+use RedRockDigital\Api\Models\{Group, User};
 use Illuminate\Validation\ValidationException;
 
 class RemoveUserFromTeam

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Me;
+namespace RedRockDigital\Api\Http\Requests\Me;
 
-use App\Rules\ConfirmOldPassword;
+use RedRockDigital\Api\Rules\ConfirmOldPassword;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 

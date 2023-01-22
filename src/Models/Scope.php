@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace RedRockDigital\Api\Models;
 
-use App\Models\Pivot\GroupScope;
-use App\Traits\HasUuid;
+use RedRockDigital\Api\Models\Pivot\GroupScope;
+use RedRockDigital\Api\Traits\HasUuid;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Scope
+ * RedRockDigital\Api\Models\Scope
  *
  * @property string $id
  * @property string $name

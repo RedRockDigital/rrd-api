@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace RedRockDigital\Api\Http\Middleware;
 
 use Closure;
 use Illuminate\Auth\AuthenticationException;

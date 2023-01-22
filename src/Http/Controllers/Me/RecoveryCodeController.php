@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Me;
+namespace RedRockDigital\Api\Http\Controllers\Me;
 
-use App\Actions\Me\CreateRecoveryCodes;
-use App\Http\Controllers\Controller;
+use RedRockDigital\Api\Actions\Me\CreateRecoveryCodes;
+use RedRockDigital\Api\Http\Controllers\Controller;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\{
     JsonResponse,

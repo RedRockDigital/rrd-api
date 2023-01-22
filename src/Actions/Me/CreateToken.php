@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Me;
+namespace RedRockDigital\Api\Actions\Me;
 
-use App\Models\User;
+use RedRockDigital\Api\Models\User;
 
 class CreateToken
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Billing;
+namespace RedRockDigital\Api\Http\Controllers\Billing;
 
-use App\Actions\Invoice\{
+use RedRockDigital\Api\Actions\Invoice\{
     RenderInvoiceAction,
     UpdateBillingInformationAction
 };
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Billing\InvoiceUpdateRequest;
-use App\Http\Resources\Billing\InvoiceResource;
-use App\Services\Payments\Payments;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Requests\Billing\InvoiceUpdateRequest;
+use RedRockDigital\Api\Http\Resources\Billing\InvoiceResource;
+use RedRockDigital\Api\Services\Payments\Payments;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 

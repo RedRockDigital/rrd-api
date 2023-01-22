@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Team;
+namespace RedRockDigital\Api\Http\Controllers\Team;
 
-use App\Actions\Team\InviteUser;
-use App\Actions\Team\RemoveUserFromTeam;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Team\{CreateUserRequest, UpdateUserRequest};
-use App\Http\Resources\Team\UserResource;
-use App\Models\User;
+use RedRockDigital\Api\Actions\Team\InviteUser;
+use RedRockDigital\Api\Actions\Team\RemoveUserFromTeam;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Requests\Team\{CreateUserRequest, UpdateUserRequest};
+use RedRockDigital\Api\Http\Resources\Team\UserResource;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Http\JsonResponse;
 
 use Illuminate\Validation\ValidationException;

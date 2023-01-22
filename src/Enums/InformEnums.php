@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Enums;
+namespace RedRockDigital\Api\Enums;
 
 enum InformEnums: string
 {

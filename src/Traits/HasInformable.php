@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Traits;
+namespace RedRockDigital\Api\Traits;
 
-use App\Enums\InformEnums;
-use App\Models\Informable;
+use RedRockDigital\Api\Enums\InformEnums;
+use RedRockDigital\Api\Models\Informable;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
 

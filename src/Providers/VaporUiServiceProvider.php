@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace RedRockDigital\Api\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;

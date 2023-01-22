@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Contact;
+namespace RedRockDigital\Api\Http\Controllers\Contact;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Contact\CreateContactRequest;
-use App\Mail\ContactSubmission;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use RedRockDigital\Api\Http\Requests\Contact\CreateContactRequest;
+use RedRockDigital\Api\Mail\ContactSubmission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
 

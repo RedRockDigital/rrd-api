@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RedRockDigital\Api\Http\Controllers;
 
 /**
  * Interface CRUDControllerInterface

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Listeners\Stripe;
+namespace RedRockDigital\Api\Listeners\Stripe;
 
-use App\Events\TeamCreated;
-use App\Services\Payments\Payments;
+use RedRockDigital\Api\Events\TeamCreated;
+use RedRockDigital\Api\Services\Payments\Payments;
 
 final class StripeCustomerCreationListener
 {

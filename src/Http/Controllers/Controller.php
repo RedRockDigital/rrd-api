@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RedRockDigital\Api\Http\Controllers;
 
-use App\Http\Response;
+use RedRockDigital\Api\Http\Response;
 use Closure;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;

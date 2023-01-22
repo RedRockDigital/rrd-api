@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Jobs\Webhooks;
+namespace RedRockDigital\Api\Jobs\Webhooks;
 
-use App\Models\Team;
-use App\Models\Webhook;
-use App\Services\Payments\Payments;
-use App\Services\Payments\Providers\Stripe\Enums\StripeStatus;
+use RedRockDigital\Api\Models\Team;
+use RedRockDigital\Api\Models\Webhook;
+use RedRockDigital\Api\Services\Payments\Payments;
+use RedRockDigital\Api\Services\Payments\Providers\Stripe\Enums\StripeStatus;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\{ShouldQueue};
 use Illuminate\Foundation\Bus\Dispatchable;

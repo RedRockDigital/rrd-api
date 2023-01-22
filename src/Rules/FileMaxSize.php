@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rules;
+namespace RedRockDigital\Api\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Storage;

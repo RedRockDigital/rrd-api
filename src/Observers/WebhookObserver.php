@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Observers;
+namespace RedRockDigital\Api\Observers;
 
-use App\Jobs\Webhooks\StripeWebHooksJob;
-use App\Models\Webhook;
+use RedRockDigital\Api\Jobs\Webhooks\StripeWebHooksJob;
+use RedRockDigital\Api\Models\Webhook;
 
 /**
  * Final Class WebhookObserver

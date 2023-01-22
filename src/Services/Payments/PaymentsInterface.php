@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\Payments;
+namespace RedRockDigital\Api\Services\Payments;
 
-use App\Models\Team;
-use App\Models\User;
+use RedRockDigital\Api\Models\Team;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Support\Collection;
 use Laravel\Cashier\Invoice;
 

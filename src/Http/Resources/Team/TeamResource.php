@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Resources\Team;
+namespace RedRockDigital\Api\Http\Resources\Team;
 
-use App\Http\Resources\Billing\SubscriptionShowResource;
-use App\Models\Team;
+use RedRockDigital\Api\Http\Resources\Billing\SubscriptionShowResource;
+use RedRockDigital\Api\Models\Team;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

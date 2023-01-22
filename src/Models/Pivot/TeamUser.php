@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Pivot;
+namespace RedRockDigital\Api\Models\Pivot;
 
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Pivot\TeamUser
+ * RedRockDigital\Api\Models\Pivot\TeamUser
  *
  * @property string $team_id
  * @property string $user_id

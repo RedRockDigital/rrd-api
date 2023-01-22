@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace RedRockDigital\Api\Http\Controllers;
 
-use App\Actions\Me\VerifyEmail;
-use App\Http\Requests\VerifyEmailRequest;
-use App\Http\Resources\VerifyEmailResource;
-use App\Models\User;
+use RedRockDigital\Api\Actions\Me\VerifyEmail;
+use RedRockDigital\Api\Http\Requests\VerifyEmailRequest;
+use RedRockDigital\Api\Http\Resources\VerifyEmailResource;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

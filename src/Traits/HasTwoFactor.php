@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace RedRockDigital\Api\Traits;
 
 use BaconQrCode\Renderer\Color\Rgb;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;

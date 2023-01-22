@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace RedRockDigital\Api\Http\Requests;
 
-use App\Models\User;
+use RedRockDigital\Api\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 

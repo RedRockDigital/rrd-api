@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Actions\Invoice;
+namespace RedRockDigital\Api\Actions\Invoice;
 
-use App\Models\Team;
+use RedRockDigital\Api\Models\Team;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Response;
 use Laravel\Cashier\Invoice;
