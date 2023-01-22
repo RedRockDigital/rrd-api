@@ -37,5 +37,3 @@ export default defineConfig({
         },
     },
 });
-
-// Adding a test to check if diff is working
