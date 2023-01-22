@@ -3,6 +3,7 @@
 namespace RedRockDigital\BedRock;
 
 use Illuminate\Support\ServiceProvider;
+use RedRockDigital\Api\Console\Commands\{InstallCommand, PruneLogs, SendRegistrationReminders, SetupCommand};
 
 class BedRockServiceProvider extends ServiceProvider
 {
@@ -40,7 +41,12 @@ class BedRockServiceProvider extends ServiceProvider
             ], 'lang');*/
 
             // Registering package commands.
-            // $this->commands([]);
+             $this->commands([
+                 InstallCommand::class,
+                 PruneLogs::class,
+                 SendRegistrationReminders::class,
+                 SetupCommand::class,
+             ]);
         }
     }
 
