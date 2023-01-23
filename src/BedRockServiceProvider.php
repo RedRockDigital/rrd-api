@@ -6,6 +6,7 @@ use App\Models\Group;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use RedRockDigital\Api\Console\Commands\{InstallCommand, PruneLogs, SendRegistrationReminders, SetupCommand};
 
 class RedRockApiServiceProvider extends ServiceProvider
 {
@@ -53,7 +54,12 @@ class RedRockApiServiceProvider extends ServiceProvider
             ], 'lang');*/
 
             // Registering package commands.
-            // $this->commands([]);
+             $this->commands([
+                 InstallCommand::class,
+                 PruneLogs::class,
+                 SendRegistrationReminders::class,
+                 SetupCommand::class,
+             ]);
         }
     }
 
