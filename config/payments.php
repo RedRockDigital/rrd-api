@@ -1,7 +1,7 @@
 <?php
 
-use App\Services\Payments\Providers\Stripe\Enums\StripeMode;
-use App\Services\Payments\Providers\Stripe\StripeService;
+use RedRockDigital\Api\Services\Payments\Providers\Stripe\Enums\StripeMode;
+use RedRockDigital\Api\Services\Payments\Providers\Stripe\StripeService;
 
 return [
     /*

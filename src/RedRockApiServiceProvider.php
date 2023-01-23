@@ -38,6 +38,10 @@ class RedRockApiServiceProvider extends ServiceProvider
                 __DIR__.'/../config/base.php' => config_path('base.php'),
             ]);
 
+            $this->publishes([
+                __DIR__.'/../config/payments.php' => config_path('payments.php'),
+            ]);
+
             // Registering package commands.
              $this->commands([InstallCommand::class]);
         }

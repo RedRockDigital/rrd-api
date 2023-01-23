@@ -17,9 +17,7 @@ class PaymentServiceProvider extends BaseProvider
      */
     public function boot(): void
     {
-        $this->publishes([
-            __DIR__.'/../../config/payments.php' => config_path('payments.php'),
-        ]);
+        
     }
 
     /**
