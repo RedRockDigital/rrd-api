@@ -7,7 +7,6 @@ use RedRockDigital\Api\Models\Group;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-
 class RedRockApiServiceProvider extends ServiceProvider
 {
     /**
