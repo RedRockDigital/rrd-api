@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Billing\{
+use RedRockDigital\Api\Http\Controllers\Billing\{
     IntentController,
     InvoiceController,
     PaymentMethodController,
     SubscriptionController
 };
-use App\Http\Controllers\Me\{
+use RedRockDigital\Api\Http\Controllers\Me\{
     InformController,
     MeController,
     NotificationController,
@@ -18,24 +18,24 @@ use App\Http\Controllers\Me\{
     TwoFactorQrCodeController,
     VerifyTwoFactorController
 };
-use App\Http\Controllers\Password\{
+use RedRockDigital\Api\Http\Controllers\Password\{
     PasswordResetController,
     PasswordResetLinkController
 };
-use App\Http\Controllers\Team\{
+use RedRockDigital\Api\Http\Controllers\Team\{
     OnboardedController,
     TeamController,
     UserController,
 };
-use App\Http\Controllers\{Blog\BlogController,
+use RedRockDigital\Api\Http\Controllers\{Blog\BlogController,
     Contact\ContactController,
     Newsletter\SubscribeController,
     RegisterController,
     VerifyEmailController,
     WebHookController
 };
-use App\Http\Middleware\TwoFactorVerified;
-use App\Http\Middleware\Webhooks\StripeIdempotencyKeyMiddleware;
+use RedRockDigital\Api\Http\Middleware\TwoFactorVerified;
+use RedRockDigital\Api\Http\Middleware\Webhooks\StripeIdempotencyKeyMiddleware;
 use Illuminate\Support\Facades\Route;
 use Laravel\Vapor\Http\Controllers\SignedStorageUrlController;
 
