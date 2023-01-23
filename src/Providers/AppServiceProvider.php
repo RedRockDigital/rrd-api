@@ -26,19 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        VerifyEmail::createUrlUsing(function ($notifiable) {
-            $url = request()->filled('url') ? request()->get('url') : config('app.url').'verify/';
-            $token = hash_hmac('sha256', $notifiable->getKey(), sha1($notifiable->getEmailForVerification()));
-
-            return $url.$notifiable->getKey().'/'.$token;
-        });
-
-        View::composer('app', function ($view) {
-            $view->with('app', [
-                'groups'        => Group::all(),
-                'feature_flags' => config('feature-flags'),
-                'tiers'         => config('payments.stripe.tiers'),
-            ]);
-        });
+        
     }
 }

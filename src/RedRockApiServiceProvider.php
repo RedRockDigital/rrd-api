@@ -2,7 +2,8 @@
 
 namespace RedRockDigital\Api;
 
-use App\Models\Group;
+use RedRockDigital\Api\Console\Commands\InstallCommand;
+use RedRockDigital\Api\Models\Group;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -29,31 +30,17 @@ class RedRockApiServiceProvider extends ServiceProvider
             ]);
         });
 
-         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-         $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('bedrock.php'),
-            ], 'config');
-
-            // Publishing the views.
-            /*$this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/bedrock'),
-            ], 'views');*/
-
-            // Publishing assets.
-            /*$this->publishes([
-                __DIR__.'/../resources/assets' => public_path('vendor/bedrock'),
-            ], 'assets');*/
-
-            // Publishing the translation files.
-            /*$this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/bedrock'),
-            ], 'lang');*/
+                __DIR__.'/../config/base.php' => config_path('base.php'),
+            ]);
 
             // Registering package commands.
-            // $this->commands([]);
+             $this->commands([InstallCommand::class]);
         }
     }
 
@@ -62,6 +49,6 @@ class RedRockApiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        
     }
 }
