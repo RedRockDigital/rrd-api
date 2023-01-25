@@ -2,12 +2,12 @@
 
 namespace RedRockDigital\Database\Seeders\Local;
 
+use Illuminate\Database\Seeder;
 use RedRockDigital\Api\Enums\InformEnums;
 use RedRockDigital\Api\Models\Group;
 use RedRockDigital\Api\Models\Team;
 use RedRockDigital\Api\Models\User;
 use RedRockDigital\Database\Seeders\Common\GroupSeeder;
-use Illuminate\RedRockDigital\Database\Seeder;
 
 class LocalSeeder extends Seeder
 {

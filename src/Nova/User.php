@@ -77,7 +77,9 @@ class User extends Resource
 
             Boolean::make('Suspended'),
 
-            HasManyThrough::make('Teams'),
+            HasManyThrough::make(
+                'Teams', 'teams', Team::class
+            ),
         ];
     }
 

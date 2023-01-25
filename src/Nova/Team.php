@@ -51,12 +51,14 @@ class Team extends Resource
         return [
             ID::make()->onlyOnDetail(),
             Text::make('Name')->sortable(),
-            Text::make('Tier'),
+            Text::make('Tier')->readonly(),
             Text::make('Owner', function () {
                 return $this?->owner?->email;
             })->onlyOnDetail(),
             MultiSelect::make('Features')->options(config('feature-flags'))->hideFromIndex(),
-            HasManyThrough::make('Users'),
+            HasManyThrough::make(
+                'Users', 'users', User::class
+            ),
         ];
     }
 

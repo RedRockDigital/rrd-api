@@ -2,10 +2,13 @@
 
 namespace RedRockDigital\Api\Providers;
 
+use RedRockDigital\Api\Nova\Blog;
 use RedRockDigital\Api\Nova\Dashboards\Main;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use RedRockDigital\Api\Nova\Team;
+use RedRockDigital\Api\Nova\User;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -26,10 +29,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function routes(): void
     {
-        Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
-                ->register();
+        Nova::resources([
+            User::class,
+            Team::class,
+            Blog::class
+        ]);
+
+        Nova::routes()->withAuthenticationRoutes();
     }
 
     /**
@@ -42,9 +48,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewNova', function ($user) {
-            return in_array($user->email, [
-                //
-            ]);
+//            return in_array($user->email, []);
         });
     }
 
@@ -55,9 +59,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function dashboards(): array
     {
-        return [
-            new Main(),
-        ];
+        return [];
     }
 
     /**
