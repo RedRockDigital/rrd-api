@@ -21,12 +21,11 @@ class BlogController extends Controller
      */
     public function index(): JsonResponse
     {
-        $blogs = Blog::where('published_at', '<=', now())
-            ->orderBy('published_at', 'desc')
-            ->paginate(12);
-
-        return $this->response
-            ->paginate($blogs);
+        return $this->response->paginate(
+            Blog::where('published_at', '<=', now())
+                ->orderBy('published_at', 'desc')
+                ->paginate(12)
+        );
     }
 
     /**
