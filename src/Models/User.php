@@ -250,7 +250,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return User
      */
-    public function prune(): User
+    public function prunable(): User
     {
         return static::where('created_at', '<=', now()->subWeeks(4));
     }
