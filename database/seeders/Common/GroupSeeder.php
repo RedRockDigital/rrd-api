@@ -1,10 +1,11 @@
 <?php
 
-namespace RedRockDigital\Api\Database\Seeders\Common;
+namespace RedRockDigital\Database\Seeders\Common;
 
+use Illuminate\Database\Seeder;
 use RedRockDigital\Api\Models\Group;
 use RedRockDigital\Api\Models\Scope;
-use Illuminate\RedRockDigital\Database\Seeder;
+use Illuminate\RedRockDigital\DatabaseSeeder;
 use Illuminate\Support\Str;
 
 class GroupSeeder extends Seeder

@@ -1,13 +1,14 @@
 <?php
 
-namespace RedRockDigital\Api\Database\Seeders\Local;
+namespace RedRockDigital\Database\Seeders\Local;
 
+use Illuminate\Database\Seeder;
 use RedRockDigital\Api\Enums\InformEnums;
 use RedRockDigital\Api\Models\Group;
 use RedRockDigital\Api\Models\Team;
 use RedRockDigital\Api\Models\User;
 use RedRockDigital\Api\Services\Payments\Payments;
-use Illuminate\RedRockDigital\Database\Seeder;
+use Illuminate\RedRockDigital\DatabaseSeeder;
 
 class DevUserSeeder extends Seeder
 {
@@ -47,8 +48,10 @@ class DevUserSeeder extends Seeder
             'owner_id'      => $ownerId = User::where('email', 'admin@redrockdigital.dev')->first()->id,
             'has_onboarded' => true,
         ]);
-
-        Payments::changeSubscription($team, 'FREE');
+        
+        if (Payments::hasSubscription($team)) {
+            Payments::changeSubscription($team, 'FREE');    
+        }
 
         $team->update([
             'allowances' => Payments::getAllowances($team),

@@ -1,6 +1,6 @@
 <?php
 
-namespace RedRockDigital\Api\Database\Seeders\Local;
+namespace RedRockDigital\Database\Seeders\Local;
 
 use Illuminate\Database\Seeder;
 use RedRockDigital\Api\Enums\InformEnums;
@@ -25,7 +25,7 @@ class LocalSeeder extends Seeder
         // Get the Event Dispatcher
         // Forget the TeamCreated Event, we don't want to send to Stripe
         $teamEventDispatcher = Team::getEventDispatcher();
-        $teamEventDispatcher->forget('RedRockDigital\Api\Events\TeamCreated');
+        $teamEventDispatcher->forget('RedRockDigital\Database\Events\TeamCreated');
         // Set back the Event Dispatcher
         Team::setEventDispatcher($teamEventDispatcher);
 

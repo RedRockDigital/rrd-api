@@ -1,11 +1,11 @@
 <?php
 
-namespace RedRockDigital\Api\Database\Factories;
+namespace RedRockDigital\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\RedRockDigital\Api\Models\Group>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\RedRockDigital\Database\Models\Group>
  */
 class PasswordResetFactory extends Factory
 {

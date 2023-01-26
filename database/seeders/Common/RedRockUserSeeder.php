@@ -1,9 +1,10 @@
 <?php
 
-namespace RedRockDigital\Api\Database\Seeders\Common;
+namespace RedRockDigital\Database\Seeders\Common;
 
+use Illuminate\Database\Seeder;
 use RedRockDigital\Api\Models\User;
-use Illuminate\RedRockDigital\Database\Seeder;
+use Illuminate\RedRockDigital\DatabaseSeeder;
 
 class RedRockUserSeeder extends Seeder
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace RedRockDigital\Api\Database\Factories;
+namespace RedRockDigital\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\RedRockDigital\Api\Models\Team>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\RedRockDigital\Database\Models\Team>
  */
 class TeamFactory extends Factory
 {

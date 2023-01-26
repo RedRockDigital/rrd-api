@@ -1,6 +1,6 @@
 <?php
 
-namespace RedRockDigital\Api\Database\Factories;
+namespace RedRockDigital\Database\Factories;
 
 use RedRockDigital\Api\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,8 +23,8 @@ class DatabaseNotificationFactory extends Factory
     {
         return [
             'id'              => Str::uuid(),
-            'type'            => 'RedRockDigital\Api\Notifications\TestNotification',
-            'notifiable_type' => 'RedRockDigital\Api\Models\User',
+            'type'            => 'RedRockDigital\Database\Notifications\TestNotification',
+            'notifiable_type' => 'RedRockDigital\Database\Models\User',
             'notifiable_id'   => User::factory(),
             'data'            => [
                 'message' => $this->faker->sentence(),

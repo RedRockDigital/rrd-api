@@ -1,11 +1,12 @@
 <?php
 
-namespace RedRockDigital\Api\Database\Seeders\Staging;
+namespace RedRockDigital\Database\Seeders\Staging;
 
-use RedRockDigital\Database\Seeders\Common\GroupSeeder;
-use RedRockDigital\Database\Seeders\Common\RedRockTeamSeeder;
-use RedRockDigital\Database\Seeders\Common\RedRockUserSeeder;
-use Illuminate\RedRockDigital\Database\Seeder;
+use Illuminate\Database\Seeder;
+use RedRockDigital\DatabaseSeeders\Common\GroupSeeder;
+use RedRockDigital\DatabaseSeeders\Common\RedRockTeamSeeder;
+use RedRockDigital\DatabaseSeeders\Common\RedRockUserSeeder;
+use Illuminate\RedRockDigital\DatabaseSeeder;
 
 class StagingSeeder extends Seeder
 {

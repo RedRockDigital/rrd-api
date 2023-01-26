@@ -1,10 +1,11 @@
 <?php
 
-namespace RedRockDigital\Api\Database\Seeders\Local;
+namespace RedRockDigital\Database\Seeders\Local;
 
+use Illuminate\Database\Seeder;
 use RedRockDigital\Api\Models\User;
 use RedRockDigital\Database\Factories\DatabaseNotificationFactory;
-use Illuminate\RedRockDigital\Database\Seeder;
+use Illuminate\RedRockDigital\DatabaseSeeder;
 
 class NotificationsSeeder extends Seeder
 {
