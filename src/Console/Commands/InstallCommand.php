@@ -4,9 +4,9 @@ namespace RedRockDigital\Api\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use RedRockDigital\Database\Seeders\Local\LocalSeeder;
-use RedRockDigital\Database\Seeders\Production\ProductionSeeder;
-use RedRockDigital\Database\Seeders\Staging\StagingSeeder;
+use RedRockDigital\Api\Database\Seeders\Local\LocalSeeder;
+use RedRockDigital\Api\Database\Seeders\Production\ProductionSeeder;
+use RedRockDigital\Api\Database\Seeders\Staging\StagingSeeder;
 
 class InstallCommand extends Command
 {
