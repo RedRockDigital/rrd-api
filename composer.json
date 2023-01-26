@@ -26,7 +26,7 @@
   "autoload": {
     "psr-4": {
       "RedRockDigital\\Api\\": "src",
-      "RedRockDigital\\Database": "database"
+      "RedRockDigital\\Database\\": "database"
     }
   },
   "autoload-dev": {
