@@ -3,6 +3,9 @@
 namespace RedRockDigital\Api;
 
 use RedRockDigital\Api\Console\Commands\InstallCommand;
+use RedRockDigital\Api\Console\Commands\PruneLogs;
+use RedRockDigital\Api\Console\Commands\SendRegistrationReminders;
+use RedRockDigital\Api\Console\Commands\SetupCommand;
 use RedRockDigital\Api\Models\Group;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\View;
@@ -43,7 +46,10 @@ class RedRockApiServiceProvider extends ServiceProvider
 
             // Registering package commands.
             $this->commands([
-                InstallCommand::class
+                InstallCommand::class,
+                PruneLogs::class,
+                SendRegistrationReminders::class,
+                SetupCommand::class
             ]);
         }
     }
