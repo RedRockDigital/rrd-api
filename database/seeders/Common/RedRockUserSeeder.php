@@ -1,6 +1,6 @@
 <?php
 
-namespace RedRockDigital\Database\Seeders\Common;
+namespace RedRockDigital\Api\Database\Seeders\Common;
 
 use RedRockDigital\Api\Models\User;
 use Illuminate\RedRockDigital\Database\Seeder;

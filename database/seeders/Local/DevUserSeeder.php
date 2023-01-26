@@ -1,6 +1,6 @@
 <?php
 
-namespace RedRockDigital\Database\Seeders\Local;
+namespace RedRockDigital\Api\Database\Seeders\Local;
 
 use RedRockDigital\Api\Enums\InformEnums;
 use RedRockDigital\Api\Models\Group;

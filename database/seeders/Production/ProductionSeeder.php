@@ -1,6 +1,6 @@
 <?php
 
-namespace RedRockDigital\Database\Seeders\Production;
+namespace RedRockDigital\Api\Database\Seeders\Production;
 
 use RedRockDigital\Database\Seeders\Common\GroupSeeder;
 use RedRockDigital\Database\Seeders\Common\RedRockTeamSeeder;

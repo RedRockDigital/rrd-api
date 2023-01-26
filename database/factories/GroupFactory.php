@@ -1,6 +1,6 @@
 <?php
 
-namespace RedRockDigital\Database\Factories;
+namespace RedRockDigital\Api\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
