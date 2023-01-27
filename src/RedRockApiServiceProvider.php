@@ -3,6 +3,7 @@
 namespace RedRockDigital\Api;
 
 use Illuminate\Support\Str;
+use Laravel\Passport\Passport;
 use RedRockDigital\Api\Console\Commands\InstallCommand;
 use RedRockDigital\Api\Console\Commands\PruneLogs;
 use RedRockDigital\Api\Console\Commands\SendRegistrationReminders;
@@ -13,6 +14,9 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factories;
+use RedRockDigital\Api\Models\Token;
+use RedRockDigital\Api\Providers\AuthServiceProvider;
+use RedRockDigital\Api\Providers\EventServiceProvider;
 
 class RedRockApiServiceProvider extends ServiceProvider
 {
@@ -49,6 +53,12 @@ class RedRockApiServiceProvider extends ServiceProvider
 
         // Load the console commands
         $this->loadConsole();
+        
+        // Load passport configuation
+        $this->app->register(AuthServiceProvider::class);
+        
+        // Load the Event Listeners
+        $this->app->register(EventServiceProvider::class);
     }
 
     /**
@@ -56,7 +66,9 @@ class RedRockApiServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        
+        $this->mergeConfigFrom(__DIR__ . '/../config/auth-guards.php', 'auth.guards');
+
+        $this->mergeConfigFrom(__DIR__ . '/../config/auth-providers.php', 'auth.providers');
     }
 
     /**
