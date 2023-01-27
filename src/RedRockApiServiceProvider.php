@@ -132,7 +132,6 @@ class RedRockApiServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../config/base.php'     => config_path('base.php'),
                 __DIR__ . '/../config/payments.php' => config_path('payments.php'),
-                __DIR__ . '/../config/auth.php'     => config_path('auth.php')
             ]);
 
             // Registering package commands.
