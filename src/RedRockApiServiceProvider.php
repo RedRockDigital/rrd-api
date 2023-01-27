@@ -14,9 +14,9 @@ use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factories;
-use RedRockDigital\Api\Models\Token;
 use RedRockDigital\Api\Providers\AuthServiceProvider;
 use RedRockDigital\Api\Providers\EventServiceProvider;
+use RedRockDigital\Api\Providers\PaymentServiceProvider;
 
 class RedRockApiServiceProvider extends ServiceProvider
 {
@@ -59,6 +59,9 @@ class RedRockApiServiceProvider extends ServiceProvider
         
         // Load the Event Listeners
         $this->app->register(EventServiceProvider::class);
+        
+        // Load the payments service provider
+        $this->app->register(PaymentServiceProvider::class);
     }
 
     /**
