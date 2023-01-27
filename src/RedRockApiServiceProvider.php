@@ -18,6 +18,7 @@ use RedRockDigital\Api\Providers\AuthServiceProvider;
 use RedRockDigital\Api\Providers\EventServiceProvider;
 use RedRockDigital\Api\Providers\NovaServiceProvider;
 use RedRockDigital\Api\Providers\PaymentServiceProvider;
+use RedRockDigital\Api\Providers\RouteServiceProvider;
 
 class RedRockApiServiceProvider extends ServiceProvider
 {
@@ -40,9 +41,6 @@ class RedRockApiServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Load the routes
-        $this->loadRoutes();
-
         // Load the migrations
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
@@ -66,6 +64,9 @@ class RedRockApiServiceProvider extends ServiceProvider
 
         // Load Nova Service Provider
         $this->app->register(NovaServiceProvider::class);
+
+        // Load Route Service Provider
+        $this->app->register(RouteServiceProvider::class);
     }
 
     /**
