@@ -24,15 +24,17 @@ class SubscriptionShowResource extends JsonResource
     public function toArray($request): array|JsonSerializable|Arrayable
     {
         return [
-            'id'                => $this->id,
-            'name'              => $this->name,
-            'price'             => $this->price,
-            'status'            => $this->stripe_status,
-            'next_payment_date' => $this->next_payment_date,
-            'is_trial'          => $this->owner->trial_ends_at !== null,
-            'trial_end'         => $this->owner->trial_ends_at,
-            'tier'              => $this->owner->tier,
-            'allowances'        => $this->owner->allowances,
+            'id'                 => $this->id,
+            'name'               => $this->name,
+            'price'              => $this->price,
+            'status'             => $this->stripe_status,
+            'next_payment_date'  => $this->next_payment_date,
+            'is_trial'           => $this->owner->trial_ends_at !== null,
+            'trial_end'          => $this->owner->trial_ends_at,
+            'tier'               => $this->owner->tier,
+            'tier'               => $this->owner->friendly_tier_name,
+            'friendly_tier_name' => $this->owner->friendly_tier_name,
+            'allowances'         => $this->owner->allowances,
         ];
     }
 }

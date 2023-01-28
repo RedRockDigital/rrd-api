@@ -4,6 +4,7 @@ namespace RedRockDigital\Api\Models;
 
 use RedRockDigital\Api\Events\TeamCreated;
 use RedRockDigital\Api\Models\Pivot\TeamUser;
+use RedRockDigital\Api\Services\Payments\Payments;
 use RedRockDigital\Api\Traits\HasInformable;
 use RedRockDigital\Api\Traits\HasUuid;
 use Barryvdh\LaravelIdeHelper\Eloquent;
@@ -31,6 +32,7 @@ use Laravel\Cashier\Billable;
  * @property string|null                    $owner_id
  * @property string                         $name
  * @property string|null                    $tier
+ * @property string|null                    $friendly_tier_name
  * @property bool                           $has_onboarded
  * @property array|null                     $features
  * @property string|null                    $billing_information
@@ -146,5 +148,18 @@ class Team extends Model
     public function subscription($name = 'default'): ?Subscription
     {
         return $this->subscriptions->where('name', $name)->first();
+    }
+
+    /**
+     * Returns the friendly name of the subscription tier.
+     *
+     * @return string
+     */
+    public function getFriendlyTierNameAttribute(): string
+    {
+        return config(sprintf("payments.%s.tiers.%s.name",
+            Payments::getProvider(),
+            $this->tier
+        ));
     }
 }
