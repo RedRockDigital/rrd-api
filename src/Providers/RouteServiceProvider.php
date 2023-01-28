@@ -2,11 +2,14 @@
 
 namespace RedRockDigital\Api\Providers;
 
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use RedRockDigital\Api\Http\Middleware\Authenticate;
+use RedRockDigital\Api\Http\Middleware\Suspended;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -29,9 +32,12 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::middleware('api')
+            Route::middleware([EnsureEmailIsVerified::class, Suspended::class])
                 ->prefix('api')
                 ->group(__DIR__ . '/../../routes/api.php');
+
+            Route::prefix('api')
+                ->group(__DIR__ . '/../../routes/dmz.php');
 
             Route::middleware('web')
                 ->group(__DIR__ . '/../../routes/web.php');

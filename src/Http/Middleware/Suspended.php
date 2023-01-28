@@ -20,6 +20,8 @@ class Suspended
      */
     public function handle(Request $request, Closure $next): JsonResponse|RedirectResponse|Response
     {
+        dd($request->user());
+
         if ($request->user()->suspended) {
             throw new AuthenticationException();
         }

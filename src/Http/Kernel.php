@@ -2,7 +2,8 @@
 
 namespace RedRockDigital\Api\Http;
 
-use RedRockDigital\Api\Http\Middleware\{Authenticate,
+use RedRockDigital\Api\Http\Middleware\{
+    Authenticate,
     EncryptCookies,
     PreventRequestsDuringMaintenance,
     RedirectIfAuthenticated,
@@ -70,6 +71,7 @@ class Kernel extends HttpKernel
             'throttle:api',
             SubstituteBindings::class,
             TwoFactorVerified::class,
+            Suspended::class,
         ],
     ];
 
@@ -91,6 +93,5 @@ class Kernel extends HttpKernel
         'signed'           => ValidateSignature::class,
         'throttle'         => ThrottleRequests::class,
         'verified'         => EnsureEmailIsVerified::class,
-        'suspended'        => Suspended::class,
     ];
 }

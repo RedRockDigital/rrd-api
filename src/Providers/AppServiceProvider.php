@@ -2,6 +2,7 @@
 
 namespace RedRockDigital\Api\Providers;
 
+use Laravel\Cashier\Cashier;
 use RedRockDigital\Api\Models\Group;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\View;

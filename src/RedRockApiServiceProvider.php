@@ -3,6 +3,7 @@
 namespace RedRockDigital\Api;
 
 use Illuminate\Support\Str;
+use Laravel\Cashier\Cashier;
 use Laravel\Passport\Passport;
 use RedRockDigital\Api\Console\Commands\InstallCommand;
 use RedRockDigital\Api\Console\Commands\PruneLogs;
@@ -19,6 +20,7 @@ use RedRockDigital\Api\Providers\EventServiceProvider;
 use RedRockDigital\Api\Providers\NovaServiceProvider;
 use RedRockDigital\Api\Providers\PaymentServiceProvider;
 use RedRockDigital\Api\Providers\RouteServiceProvider;
+use RedRockDigital\Api\Services\Payments\Payments;
 
 class RedRockApiServiceProvider extends ServiceProvider
 {
@@ -47,15 +49,15 @@ class RedRockApiServiceProvider extends ServiceProvider
         // Load the variables for the application
         $this->loadVariables();
 
+        // Load the console commands
+        $this->loadConsole();
+
         // Load the factories
         $this->loadFactories();
 
-        // Load the console commands
-        $this->loadConsole();
-        
         // Load passport configuation
         $this->app->register(AuthServiceProvider::class);
-        
+
         // Load the Event Listeners
         $this->app->register(EventServiceProvider::class);
 
@@ -74,6 +76,10 @@ class RedRockApiServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Temporary fix to remove Cashire Migration
+        // TODO: Move payment service into contained repo.
+        Cashier::ignoreMigrations();
+        
         $this->mergeConfigFrom(__DIR__ . '/../config/auth-guards.php', 'auth.guards');
 
         $this->mergeConfigFrom(__DIR__ . '/../config/auth-providers.php', 'auth.providers');

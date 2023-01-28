@@ -24,7 +24,7 @@ class CustomerNotLocatedException extends Exception
     public function __construct(?Throwable $previous = null)
     {
         parent::__construct(
-            message:  'Customer was not located and could not be created: '.$previous->getMessage(),
+            message:  'Customer was not located and could not be created: '. $previous?->getMessage(),
             previous: $previous
         );
     }

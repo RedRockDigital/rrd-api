@@ -27,8 +27,6 @@ class PaymentServiceProvider extends BaseProvider
      */
     public function register(): void
     {
-        Cashier::ignoreMigrations();
-
         $this->app->bind('payments', function () {
             return new (config('payments.provider'))();
         });
