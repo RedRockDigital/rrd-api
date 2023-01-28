@@ -22,9 +22,9 @@ final class InvoiceController extends Controller
      * @var array
      */
     public array $scopes = [
-        'invoices.index'  => 'billing.invoices.index',
-        'invoices.show'   => 'billing.invoices.show',
-        'invoices.update' => 'billing.invoices.update',
+        'billing.invoices.index'  => 'team.manage-billing',
+        'billing.invoices.show'   => 'team.manage-billing',
+        'billing.invoices.update' => 'team.manage-billing',
     ];
 
     /**
