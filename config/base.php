@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Validation\Rules\Password;
-
 return [
     'support_email' => env('BASE_SUPPORT_EMAIL', 'support@redrockdigital.dev'),
 
@@ -11,11 +9,6 @@ return [
 
         // Type of value being held, this is used in request validation. E.g. string or email
         'username_type' => 'email',
-    ],
-
-    'passwords'     => [
-        // The rules in which users passwords must validate to
-        'validation' => Password::min(8)->mixedCase()->numbers(),
     ],
 
     // Defines a default set of groups and their permissions
@@ -42,4 +35,12 @@ return [
 
     // Default group for registration
     'default_group' => 'OWNER',
+
+    'security_headers' => [
+        'X-Frame-Options' => 'SAMEORIGIN',
+        'Strict-Transport-Security' => 'max-age=31536000; preload',
+        'X-Content-Type-Options' => 'nosniff',
+        'X-XSS-Protection' => '1; mode=block',
+        'Permissions-Policy' => 'accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), cross-origin-isolated=(), display-capture=(), document-domain=(), encrypted-media=(), execution-while-not-rendered=(), execution-while-out-of-viewport=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), navigation-override=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(), usb=(), web-share=(), xr-spatial-tracking=()',
+    ],
 ];

@@ -11,7 +11,8 @@ use RedRockDigital\Api\Http\Middleware\{
     TrimStrings,
     TrustProxies,
     TwoFactorVerified,
-    VerifyCsrfToken
+    VerifyCsrfToken,
+    SecurityHeaders,
 };
 use Illuminate\Auth\Middleware\{
     AuthenticateWithBasicAuth,
@@ -31,6 +32,7 @@ use Illuminate\Routing\Middleware\ValidateSignature;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Spatie\Csp\AddCspHeaders;
 
 class Kernel extends HttpKernel
 {
@@ -42,6 +44,8 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
+        AddCspHeaders::class,
+        SecurityHeaders::class,
         // \RedRockDigital\Api\Http\Middleware\TrustHosts::class,
         TrustProxies::class,
         HandleCors::class,

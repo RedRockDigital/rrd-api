@@ -10,17 +10,20 @@ use RedRockDigital\Api\Console\Commands\PruneLogs;
 use RedRockDigital\Api\Console\Commands\SendRegistrationReminders;
 use RedRockDigital\Api\Console\Commands\SetupCommand;
 use RedRockDigital\Api\Database\Seeders\Local\LocalSeeder;
+use RedRockDigital\Api\Http\Middleware\SecurityHeaders;
 use RedRockDigital\Api\Models\Group;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factories;
+use Illuminate\Contracts\Http\Kernel;
 use RedRockDigital\Api\Providers\AuthServiceProvider;
 use RedRockDigital\Api\Providers\EventServiceProvider;
 use RedRockDigital\Api\Providers\NovaServiceProvider;
 use RedRockDigital\Api\Providers\PaymentServiceProvider;
 use RedRockDigital\Api\Providers\RouteServiceProvider;
 use RedRockDigital\Api\Services\Payments\Payments;
+use Spatie\Csp\AddCspHeaders;
 
 class RedRockApiServiceProvider extends ServiceProvider
 {
@@ -55,6 +58,9 @@ class RedRockApiServiceProvider extends ServiceProvider
         // Load the factories
         $this->loadFactories();
 
+        // Load the middlewares
+        $this->loadMiddlewares();
+
         // Load passport configuation
         $this->app->register(AuthServiceProvider::class);
 
@@ -79,7 +85,7 @@ class RedRockApiServiceProvider extends ServiceProvider
         // Temporary fix to remove Cashire Migration
         // TODO: Move payment service into contained repo.
         Cashier::ignoreMigrations();
-        
+
         $this->mergeConfigFrom(__DIR__ . '/../config/auth-guards.php', 'auth.guards');
 
         $this->mergeConfigFrom(__DIR__ . '/../config/auth-providers.php', 'auth.providers');
@@ -138,7 +144,7 @@ class RedRockApiServiceProvider extends ServiceProvider
     /**
      * Load the console commands for the application.
      *
-     * @return void]
+     * @return void
      */
     private function loadConsole()
     {
@@ -146,6 +152,8 @@ class RedRockApiServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../config/base.php'     => config_path('base.php'),
                 __DIR__ . '/../config/payments.php' => config_path('payments.php'),
+                __DIR__ . '/../config/csp.php' => config_path('csp.php'),
+                __DIR__ . '/../config/nova.php' => config_path('nova.php'),
             ]);
 
             // Registering package commands.
@@ -156,5 +164,15 @@ class RedRockApiServiceProvider extends ServiceProvider
                 SetupCommand::class,
             ]);
         }
+    }
+
+    /**
+     * @return void
+     */
+    private function loadMiddlewares(): void
+    {
+        $kernel = app(Kernel::class);
+        $kernel->pushMiddleware(SecurityHeaders::class);
+        $kernel->pushMiddleware(AddCspHeaders::class);
     }
 }
