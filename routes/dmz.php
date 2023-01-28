@@ -21,6 +21,10 @@ use RedRockDigital\Api\Http\Controllers\{
     VerifyEmailController,
     WebHookController
 };
+use RedRockDigital\Api\Http\Controllers\Password\{
+    PasswordResetController,
+    PasswordResetLinkController
+};
 
 Route::as('webhooks.')
     ->prefix('webhooks')
