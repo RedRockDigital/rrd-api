@@ -24,7 +24,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'install {--env= : The env to seed}';
+    protected $signature = 'rrd:install {--env= : The env to seed}';
 
     /**
      * The console command description.
