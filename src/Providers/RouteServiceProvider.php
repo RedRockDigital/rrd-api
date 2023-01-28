@@ -32,7 +32,7 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::middleware([EnsureEmailIsVerified::class, Suspended::class])
+            Route::middleware(['auth:api', EnsureEmailIsVerified::class, Suspended::class])
                 ->prefix('api')
                 ->group(__DIR__ . '/../../routes/api.php');
 

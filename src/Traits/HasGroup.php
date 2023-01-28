@@ -2,6 +2,7 @@
 
 namespace RedRockDigital\Api\Traits;
 
+use RedRockDigital\Api\Exceptions\RoleNotFoundException;
 use RedRockDigital\Api\Models\Group;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -42,7 +43,7 @@ trait HasGroup
         $groupModel = Group::whereRef($group)->firstOrFail();
 
         if ($groupModel === null) {
-//            throw new RoleNotFoundException($role);
+            throw new RoleNotFoundException($role);
         }
 
         $this->teams()->attach($teamId, ['group_id' => $groupModel->id]);
