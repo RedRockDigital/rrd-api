@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Pick from "lodash/Pick";
+import pick from "lodash/pick";
 import { Card, CardHeader, CardBody, CardFooter, PrimaryButton, Input, Alert, useUser, useForm, useLanguage, useRequest } from "rrd-ui";
 
 import SettingsLayout from "@/Components/Layouts/SettingsLayout";
@@ -21,7 +21,7 @@ const Profile = () => {
     useEffect(() => {
         if (user) {
             setForm({
-                ...Pick(user, ["first_name", "last_name", "email"]),
+                ...pick(user, ["first_name", "last_name", "email"]),
             });
         }
     }, [setForm, user]);
