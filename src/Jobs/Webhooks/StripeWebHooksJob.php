@@ -2,6 +2,7 @@
 
 namespace RedRockDigital\Api\Jobs\Webhooks;
 
+use Laravel\Cashier\Invoice;
 use RedRockDigital\Api\Models\Team;
 use RedRockDigital\Api\Models\Webhook;
 use RedRockDigital\Api\Services\Payments\Payments;
@@ -48,11 +49,11 @@ final class StripeWebHooksJob implements ShouldQueue
         // Match the in-coming hook to the method
         // Off-load to the method and continue the logic.
         match ($this->webhook->hook) {
-            'invoice.payment_failed'        => $this->handleInvoicePaymentFailed(),
+            'invoice.payment_failed' => $this->handleInvoicePaymentFailed(),
             'customer.subscription.updated',
             'customer.subscription.created' => $this->handleSubscriptionUpdated(),
             'customer.subscription.deleted' => $this->handleSubscriptionDeleted(),
-            default                         => $this->handleHookNotFound()
+            default => $this->handleHookNotFound()
         };
     }
 
@@ -92,10 +93,15 @@ final class StripeWebHooksJob implements ShouldQueue
         /** @var Team $team */
         [$customerId, $team] = $this->locateTeamFromCustomerId();
 
+        // Fetch the up-coming invoice and grab the amount due
+        /** @var Invoice $subscription */
+        $upcomingInvoice = $team->subscription()->upcomingInvoice();
+
         // Update the subscription with the next payment date
         $team->subscription()->update([
-            'price'             => floatval(Arr::get($this->webhook->payload, 'object.plan.amount') / 100),
-            'next_payment_date' => Arr::get($this->webhook->payload, 'object.current_period_end'),
+            'price'               => floatval(Arr::get($this->webhook->payload, 'object.plan.amount') / 100),
+            'next_payment_date'   => Arr::get($this->webhook->payload, 'object.current_period_end'),
+            'next_payment_amount' => ($upcomingInvoice->rawAmountDue() / 100)
         ]);
 
         // Finally update the webhook
