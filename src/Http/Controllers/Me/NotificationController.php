@@ -1,0 +1,41 @@
+<?php
+
+namespace RedRockDigital\Api\Http\Controllers\Me;
+
+use RedRockDigital\Api\Actions\Me\MarkNotificationAsRead;
+use RedRockDigital\Api\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
+class NotificationController extends Controller
+{
+    /**
+     * @var array|false[]
+     */
+    public array $scopes = [
+        'me.notifications.index'  => false,
+        'me.notifications.update' => false,
+    ];
+
+    /**
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function index(Request $request): JsonResponse
+    {
+        return $this->response->respond($request->user()->unreadNotifications);
+    }
+
+    /**
+     * @param  string  $notificationId
+     * @param  MarkNotificationAsRead  $markNotificationAsRead
+     * @param  Request  $request
+     * @return JsonResponse
+     */
+    public function update(string $notificationId, MarkNotificationAsRead $markNotificationAsRead, Request $request): JsonResponse
+    {
+        $markNotificationAsRead($request->user(), $notificationId);
+
+        return $this->response->respond();
+    }
+}

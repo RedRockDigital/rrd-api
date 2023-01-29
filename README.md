@@ -1,46 +1,56 @@
-# BedRock
+## Red Rock Digital API
 
-BedRock, is a boilerplated API built on Laravel, and intended to be used in-house
-in the hopes to accelerate the initial ground-work of all our products.
+This is the API for the Red Rock Digital foundations. It is built using the [Laravel](http://laravel.com/) framework.
 
-## Version
+### Documentation
 
-The current latest version is (v1.0.0), which was release on:
+The documentation for the API can be found [here](https://redrockdigital.github.io/api/).
 
-## Installation
+### Requirements
 
-You can install the package via composer:
+1. PHP 8.2+
+2. MySQL 8+
+3. Composer 2+
 
-```bash
-composer require redrockdigital/bedrock
+### Getting Started
+
+In your project, run the following composer require:
+
+```
+composer require redrockdigital/api
 ```
 
-## Usage
+Add the following to your `config/app.php` providers array:
 
-```php
-// Usage description here
+```
+RedRockDigital\Api\RedRockApiServiceProvider::class,
 ```
 
-### Testing
+Then you will then need to publish the config file(s):
 
-```bash
-composer test
+```
+php artisan vendor:publish --provider="RedRockDigital\Api\RedRockApiServiceProvider"
 ```
 
-### Changelog
+This will publish the following configs to `config/base.php`, `config/payments.php`. The routes, controllers, events, and everything in-between are all pre-registered within the above ServiceProvider. Meaning everything bar two commands, will run out of the box.
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+The two commands which should be ran to setup the API are:
 
-## Contributing
+#### Setup Command
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+This command will install all the frontend components, needed to build the frontend.
 
-### Security
+```
+php artisan rrd:setup {--force : Force operation without interaction} {--reinstall : Force reinstall of the package}
+```
 
-If you discover any security related issues, please email support@redrockdigital.dev instead of using the issue tracker.
+#### Install Command
 
-## Credits
+This command will install the API into your project. Doing the following, will migrate the database, seed the database, install passport keys, and seed database with testing data for local use.
 
--   [Red Rock Digital Ltd](https://github.com/redrockdigital)
--   [Jamie Nicol](https://github.com/redrockdigital)
--   [Thomas Palmer](https://github.com/redrockdigital)
+```
+php artisan rrd:install {--env= : The env to seed}
+```
+
+
+
