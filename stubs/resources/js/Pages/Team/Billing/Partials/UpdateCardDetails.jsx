@@ -20,7 +20,6 @@ const UpdateCardDetails = ({ onboarding, handleToggleForm, handleRefresh }) => {
             const request = await post("/billing/intents");
 
             if (request.success) {
-                console.log(request.data.data);
                 setClientSecret(request.data.data.client_secret);
                 setWorking(false);
             }
