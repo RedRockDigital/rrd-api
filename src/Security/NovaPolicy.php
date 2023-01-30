@@ -34,6 +34,7 @@ class NovaPolicy extends Basic
 
         $this->addDirective(Directive::FRAME, 'https://js.stripe.com/');
 
+        $this->addDirective(Directive::CONNECT, config('app.url'));
         $this->addDirective(Directive::CONNECT, 'https://d3hb14vkzrxvla.cloudfront.net/');
         $this->addDirective(
             Directive::CONNECT,
