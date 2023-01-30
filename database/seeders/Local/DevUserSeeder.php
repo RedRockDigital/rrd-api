@@ -1,6 +1,6 @@
 <?php
 
-namespace RedRockDigital\Database\Seeders\Local;
+namespace RedRockDigital\Api\Database\Seeders\Local;
 
 use Illuminate\Database\Seeder;
 use RedRockDigital\Api\Enums\InformEnums;

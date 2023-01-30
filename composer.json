@@ -30,7 +30,7 @@
     ],
     "psr-4": {
       "RedRockDigital\\Api\\": "src",
-      "RedRockDigital\\Database\\": "database"
+      "RedRockDigital\\Api\\Database\\Seeders\\": "database/seeders"
     }
   },
   "autoload-dev": {

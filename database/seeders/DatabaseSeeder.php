@@ -1,8 +1,8 @@
 <?php
 
-namespace RedRockDigital\Database\Seeders;
+namespace RedRockDigital\Api\Database\Seeders;
 
-use RedRockDigital\DatabaseSeeders\Local\LocalSeeder;
+use RedRockDigital\Api\Database\Seeders\Local\LocalSeeder;
 use Illuminate\RedRockDigital\DatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
