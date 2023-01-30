@@ -23,8 +23,8 @@ class DatabaseNotificationFactory extends Factory
     {
         return [
             'id'              => Str::uuid(),
-            'type'            => 'RedRockDigital\Database\Notifications\TestNotification',
-            'notifiable_type' => 'RedRockDigital\Database\Models\User',
+            'type'            => 'RedRockDigital\Api\Notifications\TestNotification',
+            'notifiable_type' => 'RedRockDigital\Api\Models\User',
             'notifiable_id'   => User::factory(),
             'data'            => [
                 'message' => $this->faker->sentence(),
