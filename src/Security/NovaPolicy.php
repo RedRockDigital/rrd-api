@@ -24,12 +24,14 @@ class NovaPolicy extends Basic
         }
 
         $this->addDirective(Directive::STYLE, 'https://fonts.googleapis.com/');
+        $this->addDirective(Directive::STYLE, config('app.url'));
         $this->addDirective(Directive::STYLE, 'unsafe-inline');
 
         $this->addDirective(Directive::FONT, 'https://fonts.gstatic.com/');
 
         $this->addDirective(Directive::SCRIPT, 'https://beacon-v2.helpscout.net/');
         $this->addDirective(Directive::SCRIPT, 'https://js.stripe.com/');
+        $this->addDirective(Directive::SCRIPT, config('app.url'));
         $this->addDirective(Directive::SCRIPT, 'unsafe-inline');
 
         $this->addDirective(Directive::FRAME, 'https://js.stripe.com/');
