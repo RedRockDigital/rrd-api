@@ -32,7 +32,7 @@ class RedRockApiServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public static string $factoryNamespace = 'RedRockDigital\\Database\\Factories\\';
+    public static string $factoryNamespace = 'RedRockDigital\\Api\\Factories\\';
 
     /**
      * The namespace for the models.
