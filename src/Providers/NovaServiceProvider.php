@@ -49,7 +49,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate(): void
     {
         Gate::define('viewNova', function (UserModel $user) {
-            return explode('@', $user->email)[1] === env('NOVA_EMAIL_DOMAIN');
+            return Str::after($user->email, '@') === env('NOVA_EMAIL_DOMAIN');
         });
     }
 
