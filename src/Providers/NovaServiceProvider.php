@@ -9,6 +9,7 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use RedRockDigital\Api\Nova\Team;
 use RedRockDigital\Api\Nova\User;
+use RedRockDigital\Api\Models\User as UserModel;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -47,8 +48,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function gate(): void
     {
-        Gate::define('viewNova', function ($user) {
-//            return in_array($user->email, []);
+        Gate::define('viewNova', function (UserModel $user) {
+            return Str::after($user->email, '@') === env('NOVA_EMAIL_DOMAIN');
         });
     }
 
