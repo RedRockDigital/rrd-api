@@ -2,6 +2,7 @@
 
 namespace RedRockDigital\Api\Providers;
 
+use Illuminate\Support\Str;
 use RedRockDigital\Api\Nova\Blog;
 use RedRockDigital\Api\Nova\Dashboards\Main;
 use Illuminate\Support\Facades\Gate;
