@@ -156,4 +156,14 @@ class User extends Resource
     {
         return false;
     }
+
+    /**
+     * @param Request $request
+     *
+     * @return bool
+     */
+    public function authorizedToView(Request $request): bool
+    {
+        return true;
+    }
 }
