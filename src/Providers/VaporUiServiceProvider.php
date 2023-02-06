@@ -2,6 +2,7 @@
 
 namespace RedRockDigital\Api\Providers;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,11 +28,7 @@ class VaporUiServiceProvider extends ServiceProvider
     protected function gate()
     {
         Gate::define('viewVaporUI', function ($user = null) {
-            return in_array(optional($user)->email, [
-                'admin@redrockdigital.dev',
-                'jamie@redrockdigital.dev',
-                'thomas@redrockdigital.dev',
-            ]);
+            return Str::after($user->email, '@') === env('NOVA_EMAIL_DOMAIN');
         });
     }
 }
