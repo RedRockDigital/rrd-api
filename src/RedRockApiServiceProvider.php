@@ -59,7 +59,7 @@ class RedRockApiServiceProvider extends ServiceProvider
         $this->loadFactories();
 
         // Load the middlewares
-        $this->loadMiddlewares();
+//        $this->loadMiddlewares();
 
         // Load passport configuation
         $this->app->register(AuthServiceProvider::class);
