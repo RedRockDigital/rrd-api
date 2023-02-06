@@ -44,8 +44,8 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-//        AddCspHeaders::class,
-//        SecurityHeaders::class,
+        AddCspHeaders::class,
+        SecurityHeaders::class,
         // \RedRockDigital\Api\Http\Middleware\TrustHosts::class,
         TrustProxies::class,
         HandleCors::class,
