@@ -5,7 +5,9 @@ namespace RedRockDigital\Api\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
-use RedRockDigital\Api\Database\Seeders\Local\LocalSeeder;
+use RedRockDigital\Api\Seeders\Local\LocalSeeder;
+use RedRockDigital\Api\Seeders\Production\ProductionSeeder;
+use RedRockDigital\Api\Seeders\Staging\StagingSeeder;
 
 class InstallCommand extends Command
 {
@@ -13,9 +15,9 @@ class InstallCommand extends Command
      * @var string[]
      */
     protected array $seeders = [
-        'local'      => \RedRockDigital\Api\Seeders\Local\LocalSeeder::class,
-//        'staging'    => StagingSeeder::class,
-//        'production' => ProductionSeeder::class,
+        'local'      => LocalSeeder::class,
+        'staging'    => StagingSeeder::class,
+        'production' => ProductionSeeder::class,
     ];
 
     /**
