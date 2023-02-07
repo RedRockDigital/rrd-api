@@ -1,6 +1,6 @@
 <?php
 
-namespace RedRockDigital\Database\Seeders\Local;
+namespace RedRockDigital\Api\Seeders\Local;
 
 use Illuminate\Database\Seeder;
 use RedRockDigital\Api\Enums\InformEnums;
@@ -9,7 +9,7 @@ use RedRockDigital\Api\Models\{
     Team,
     User
 };
-use RedRockDigital\Database\Seeders\Common\GroupSeeder;
+use RedRockDigital\Api\Seeders\Common\GroupSeeder;
 
 class LocalSeeder extends Seeder
 {

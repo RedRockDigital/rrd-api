@@ -1,6 +1,6 @@
 <?php
 
-namespace RedRockDigital\Database\Factories;
+namespace RedRockDigital\Api\Factories;
 
 use RedRockDigital\Api\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;

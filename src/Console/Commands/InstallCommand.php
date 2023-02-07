@@ -3,10 +3,11 @@
 namespace RedRockDigital\Api\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
-use RedRockDigital\Database\Seeders\Local\LocalSeeder;
-use RedRockDigital\Database\Seeders\Production\ProductionSeeder;
-use RedRockDigital\Database\Seeders\Staging\StagingSeeder;
+use RedRockDigital\Api\Seeders\Local\LocalSeeder;
+use RedRockDigital\Api\Seeders\Production\ProductionSeeder;
+use RedRockDigital\Api\Seeders\Staging\StagingSeeder;
 
 class InstallCommand extends Command
 {
@@ -76,7 +77,7 @@ class InstallCommand extends Command
 
         if ($env = $this->option('env')) {
             if (isset($this->seeders[(string)$env])) {
-                $this->call($this->seeders[(string)$env]);
+                Artisan::call('db:seed', ['--class' => $this->seeders[(string)$env],]);
             } else {
                 $this->error(
                     'Invalid env provided. Please choose one of the following: '.

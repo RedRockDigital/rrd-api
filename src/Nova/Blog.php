@@ -40,13 +40,16 @@ class Blog extends Resource
      * @var array
      */
     public static $search = [
-        'title', 'author', 'categories',
+        'title',
+        'author',
+        'categories',
     ];
 
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
+     *
      * @return array
      */
     public function fields(NovaRequest $request): array
@@ -63,7 +66,7 @@ class Blog extends Resource
             Markdown::make('Body')->hideFromIndex()->required(),
             File::make('Featured Image')
                 ->disk(config('filesystems.default'))
-                ->store(fn (Request $request) => [
+                ->store(fn(Request $request) => [
                     'featured_image' => $request->featured_image->storePublicly('public'),
                 ])
                 ->hideFromIndex()
@@ -75,7 +78,8 @@ class Blog extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
+     *
      * @return array
      */
     public function cards(NovaRequest $request): array
@@ -86,7 +90,8 @@ class Blog extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
+     *
      * @return array
      */
     public function filters(NovaRequest $request): array
@@ -97,7 +102,8 @@ class Blog extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
+     *
      * @return array
      */
     public function lenses(NovaRequest $request): array
@@ -108,7 +114,8 @@ class Blog extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
+     *
      * @return array
      */
     public function actions(NovaRequest $request): array
@@ -117,7 +124,8 @@ class Blog extends Resource
     }
 
     /**
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return bool
      */
     public function authorizedToReplicate(Request $request): bool

@@ -1,14 +1,13 @@
 <?php
 
-namespace RedRockDigital\Database\Factories;
+namespace RedRockDigital\Api\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\RedRockDigital\Database\Models\Group>
  */
-class GroupFactory extends Factory
+class PasswordResetFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,11 +16,9 @@ class GroupFactory extends Factory
      */
     public function definition(): array
     {
-        $name = $this->faker->randomElement(['Owner', 'Admin', 'User']);
-
         return [
-            'name' => $name,
-            'ref'  => Str::snake(strtoupper($name)),
+            'id'    => $this->faker->uuid(),
+            'token' => $this->faker->uuid(),
         ];
     }
 }

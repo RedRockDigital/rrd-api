@@ -22,6 +22,7 @@ use RedRockDigital\Api\Providers\EventServiceProvider;
 use RedRockDigital\Api\Providers\NovaServiceProvider;
 use RedRockDigital\Api\Providers\PaymentServiceProvider;
 use RedRockDigital\Api\Providers\RouteServiceProvider;
+use RedRockDigital\Api\Providers\VaporUiServiceProvider;
 use RedRockDigital\Api\Services\Payments\Payments;
 use Spatie\Csp\AddCspHeaders;
 
@@ -32,7 +33,7 @@ class RedRockApiServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public static string $factoryNamespace = 'RedRockDigital\\Database\\Factories\\';
+    public static string $factoryNamespace = 'RedRockDigital\\Api\\Factories\\';
 
     /**
      * The namespace for the models.
@@ -75,6 +76,9 @@ class RedRockApiServiceProvider extends ServiceProvider
 
         // Load Route Service Provider
         $this->app->register(RouteServiceProvider::class);
+
+        // Load Vapor UI Service Provider
+        $this->app->register(VaporUiServiceProvider::class);
     }
 
     /**
