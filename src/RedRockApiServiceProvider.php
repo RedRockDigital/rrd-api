@@ -151,19 +151,23 @@ class RedRockApiServiceProvider extends ServiceProvider
     private function loadFactories()
     {
         Factories\Factory::guessFactoryNamesUsing(function (string $modelName) {
+            $baseName = class_basename($modelName) . 'Factory';
+
             if (Str::before($modelName, '\\') !== 'App')  {
-                return self::$rrdApiFactoryNamespace . class_basename($modelName) . 'Factory';
+                return self::$rrdApiFactoryNamespace . $baseName;
             }
 
-            return self::$appFactoryNamespace . class_basename($modelName) . 'Factory';
+            return self::$appFactoryNamespace . $baseName;
         });
 
         Factories\Factory::guessModelNamesUsing(function ($factory) {
+            $baseName = Str::replaceLast('Factory', '', class_basename($factory));
+
             if (Str::before($factory::class, '\\') !== 'Database')  {
-                return self::$rrdApiModelNamespace . Str::replaceLast('Factory', '', class_basename($factory));
+                return self::$rrdApiModelNamespace . $baseName;
             }
             
-            return self::$appModelNamespace . Str::replaceLast('Factory', '', class_basename($factory));
+            return self::$appModelNamespace . $baseName;
         });
     }
 
