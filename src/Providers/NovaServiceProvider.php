@@ -3,7 +3,6 @@
 namespace RedRockDigital\Api\Providers;
 
 use Illuminate\Support\Str;
-use Laravel\Nova\Events\ServingNova;
 use RedRockDigital\Api\Nova\Blog;
 use RedRockDigital\Api\Nova\Dashboards\Main;
 use Illuminate\Support\Facades\Gate;
