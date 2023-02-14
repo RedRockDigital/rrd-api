@@ -33,14 +33,28 @@ class RedRockApiServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public static string $factoryNamespace = 'RedRockDigital\\Api\\Factories\\';
+    public static string $rrdApiFactoryNamespace = 'RedRockDigital\\Api\\Factories\\';
 
     /**
      * The namespace for the models.
      *
      * @var string
      */
-    public static string $modelNamespace = 'RedRockDigital\\Api\\Models\\';
+    public static string $rrdApiModelNamespace = 'RedRockDigital\\Api\\Models\\';
+
+    /**
+     * The namespace for the factories.
+     *
+     * @var string
+     */
+    public static string $appFactoryNamespace = 'Database\\Factories\\';
+
+    /**
+     * The namespace for the models.
+     *
+     * @var string
+     */
+    public static string $appModelNamespace = 'App\\Models\\';
 
     /**
      * Bootstrap the application services.
@@ -137,11 +151,23 @@ class RedRockApiServiceProvider extends ServiceProvider
     private function loadFactories()
     {
         Factories\Factory::guessFactoryNamesUsing(function (string $modelName) {
-            return self::$factoryNamespace . class_basename($modelName) . 'Factory';
+            $baseName = class_basename($modelName) . 'Factory';
+
+            if (Str::before($modelName, '\\') !== 'App')  {
+                return self::$rrdApiFactoryNamespace . $baseName;
+            }
+
+            return self::$appFactoryNamespace . $baseName;
         });
 
         Factories\Factory::guessModelNamesUsing(function ($factory) {
-            return self::$modelNamespace . Str::replaceLast('Factory', '', class_basename($factory));
+            $baseName = Str::replaceLast('Factory', '', class_basename($factory));
+
+            if (Str::before($factory::class, '\\') !== 'Database')  {
+                return self::$rrdApiModelNamespace . $baseName;
+            }
+            
+            return self::$appModelNamespace . $baseName;
         });
     }
 
