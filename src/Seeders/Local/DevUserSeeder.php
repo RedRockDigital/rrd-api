@@ -12,6 +12,8 @@ use Illuminate\RedRockDigital\DatabaseSeeder;
 
 class DevUserSeeder extends Seeder
 {
+    const DEV_TEAM_NAME = 'Red Rock Dev';
+
     /**
      * @var array|\string[][]
      */
@@ -36,22 +38,20 @@ class DevUserSeeder extends Seeder
     public function run(): void
     {
         foreach ($this->users as $user) {
-            $user = User::create(array_merge($user, [
-                'password' => env('SEEDER_PASSWORD', 'password'),
-            ]));
+            $user = User::create(
+                array_merge($user, [
+                    'password' => env('SEEDER_PASSWORD', 'password'),
+                ])
+            );
 
             $user->markEmailAsVerified();
         }
 
         $team = Team::create([
-            'name'          => 'Red Rock Dev',
+            'name'          => self::DEV_TEAM_NAME,
             'owner_id'      => $ownerId = User::where('email', 'admin@redrockdigital.dev')->first()->id,
             'has_onboarded' => true,
         ]);
-        
-        if (Payments::hasSubscription($team)) {
-            Payments::changeSubscription($team, 'FREE');    
-        }
 
         $team->update([
             'allowances' => Payments::getAllowances($team),
@@ -65,11 +65,10 @@ class DevUserSeeder extends Seeder
             'group_id' => Group::where('ref', 'USER')->first()->id,
         ]);
 
-        $users = User::where('email', 'like', '%@redrockdigital.dev');
-
-        $users->each(static function (User $user) use ($team) {
-            $user->inform(InformEnums::RECEIVE_PROMOTIONAL);
-            $user->update(['current_team_id' => $team->id]);
-        });
+        User::where('email', 'like', '%@redrockdigital.dev')
+            ->each(static function (User $user) use ($team) {
+                $user->inform(InformEnums::RECEIVE_PROMOTIONAL);
+                $user->update(['current_team_id' => $team->id]);
+            });
     }
 }
