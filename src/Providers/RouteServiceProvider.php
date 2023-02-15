@@ -6,10 +6,10 @@ use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
-use RedRockDigital\Api\Http\Middleware\Authenticate;
-use RedRockDigital\Api\Http\Middleware\Suspended;
+use RedRockDigital\Api\Http\Middleware\IsSuspended;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -32,12 +32,17 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::middleware(['auth:api', EnsureEmailIsVerified::class, Suspended::class])
+            Route::middleware(['auth:api', EnsureEmailIsVerified::class, IsSuspended::class])
                 ->prefix('api')
-                ->group(__DIR__ . '/../../routes/api.php');
+                ->group(__DIR__ . '/../../routes/api.php')
+                ->group(base_path('routes/api.php'));
 
-            Route::prefix('api')
+            $dmzRoutes = Route::prefix('api')
                 ->group(__DIR__ . '/../../routes/dmz.php');
+
+            if (File::exists(base_path('routes/dmz.php'))) {
+                $dmzRoutes->group(base_path('routes/dmz.php'));
+            }
 
             Route::middleware('web')
                 ->group(__DIR__ . '/../../routes/web.php');
