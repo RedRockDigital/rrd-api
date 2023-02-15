@@ -2,6 +2,7 @@
 
 namespace RedRockDigital\Api\Console\Commands;
 
+use Database\Seeders\DatabaseSeeder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -41,11 +42,13 @@ class InstallCommand extends Command
      */
     public function handle(): void
     {
+        // Migrate the database
+        $this->call('migrate:fresh', ['--force' => null,]);
+
         // Install passport and migrate
         $this->installPassport();
 
-        $this->call('migrate:fresh', ['--force' => null,]);
-
+        // Install oauth
         $this->installOauth();
 
         // If the --env option is not provided, we don't need to seed
@@ -67,6 +70,11 @@ class InstallCommand extends Command
         // If the oauth client doesn't exist, generate it
         $this->call('passport:client', [
             '--password'       => null,
+            '--no-interaction' => true,
+        ]);
+
+        $this->call('passport:client', [
+            '--personal'       => null,
             '--no-interaction' => true,
         ]);
     }
