@@ -1,0 +1,38 @@
+<?php
+
+namespace {{ namespace }};
+
+use RedRockDigital\Api\Http\Controllers\Controller;
+use Illuminate\Http\{
+    Request,
+    JsonResponse
+};
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class {{ class }} extends Controller
+{
+    public function index(Request $request): JsonResponse
+    {
+        return $this->success(['message' => 'Hello World',]);
+    }
+
+    public function show(Request $request, $id): JsonResponse
+    {
+        return $this->success(['message' => 'Hello World',]);
+    }
+
+    public function store(Request $request): JsonResponse
+    {
+        return $this->success(['message' => 'Hello World',]);
+    }
+
+    public function update(Request $request, $id): JsonResponse
+    {
+        return $this->success(['message' => 'Hello World',]);
+    }
+
+    public function destroy(Request $request, $id): JsonResponse
+    {
+        return $this->success(['message' => 'Hello World',]);
+    }
+}
