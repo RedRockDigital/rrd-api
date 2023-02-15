@@ -15,10 +15,7 @@ final class WebHookController extends Controller
      * @var array|false[]
      */
     public array $scopes = [
-        'webhooks.stripe.payment_failed'         => false,
-        'webhooks.stripe.subscription_created'   => false,
-        'webhooks.stripe.subscription_updated'   => false,
-        'webhooks.stripe.subscription_deleted'   => false,
+        'webhooks.stripe' => false,
     ];
 
     /**

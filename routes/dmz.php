@@ -12,7 +12,7 @@
 */
 
 use Illuminate\Support\Facades\Route;
-use RedRockDigital\Api\Http\Middleware\Webhooks\StripeIdempotencyKeyMiddleware;
+use RedRockDigital\Api\Http\Middleware\Webhooks\StripeWebhookMiddleware;
 use RedRockDigital\Api\Http\Controllers\{
     Blog\BlogController,
     Contact\ContactController,
@@ -26,16 +26,11 @@ use RedRockDigital\Api\Http\Controllers\Password\{
     PasswordResetLinkController
 };
 
-Route::as('webhooks.')
-    ->prefix('webhooks')
-    ->group(function () {
-        Route::middleware(StripeIdempotencyKeyMiddleware::class)->group(function () {
-            Route::post('/stripe-payment-failed', [WebHookController::class, 'stripe'])->name('stripe.payment_failed');
-            Route::post('/stripe-subscription-created', [WebHookController::class, 'stripe'])->name('stripe.subscription_created');
-            Route::post('/stripe-subscription-updated', [WebHookController::class, 'stripe'])->name('stripe.subscription_updated');
-            Route::post('/stripe-subscription-deleted', [WebHookController::class, 'stripe'])->name('stripe.subscription_deleted');
-        });
+Route::as('webhooks.')->prefix('webhooks')->group(function () {
+    Route::middleware(StripeWebhookMiddleware::class)->group(function () {
+        Route::post('/stripe', [WebHookController::class, 'stripe'])->name('stripe');
     });
+});
 
 Route::post('register', [RegisterController::class, 'store'])->name('register');
 Route::get('verify-email', [VerifyEmailController::class, 'show'])->name('verify-email');

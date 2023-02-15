@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 
-class StripeIdempotencyKeyMiddleware
+class StripeWebhookMiddleware
 {
     /**
      * Handle an incoming request.
@@ -24,6 +24,11 @@ class StripeIdempotencyKeyMiddleware
      */
     public function handle(Request $request, Closure $next): JsonResponse|RedirectResponse|Response
     {
+        // We will construct the webhook and check the signature
+        // if the signature is invalid, we will throw an exception
+        // and return a 400 response.
+
+
         // Before we begin, we will check to see if we are
         // processing, or finished a event with the same idem_key
         // if we have, we will bin this request off.
