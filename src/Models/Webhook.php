@@ -68,4 +68,30 @@ final class Webhook extends Model
         'payload'  => 'json',
         'response' => 'json',
     ];
+
+    /**
+     * Check if a webhook with the given idem key exists
+     * 
+     * @param string $idemKey
+     *
+     * @return bool
+     */
+    public static function checkIdemKey(string $idemKey): bool
+    {
+        return self::whereIdemKey($idemKey)
+            ->whereIn('status', ['processing', 'completed'])
+            ->exists();
+    }
+
+    /**
+     * Marks a webhook as failed due to an exception
+     * 
+     * @param string $idemKey
+     *
+     * @return void
+     */
+    public static function markAsFailed(string $idemKey)
+    {
+        self::whereIdemKey($idemKey)->update(['status' => 'failed']);
+    }
 }

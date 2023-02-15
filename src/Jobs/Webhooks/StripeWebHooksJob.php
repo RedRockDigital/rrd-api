@@ -99,9 +99,10 @@ final class StripeWebHooksJob implements ShouldQueue
 
         // Update the subscription with the next payment date
         $team->subscription()->update([
+            'stripe_status'       => Arr::get($this->webhook->payload, 'object.status'),
             'price'               => floatval(Arr::get($this->webhook->payload, 'object.plan.amount') / 100),
             'next_payment_date'   => Arr::get($this->webhook->payload, 'object.current_period_end'),
-            'next_payment_amount' => ($upcomingInvoice->rawAmountDue() / 100)
+            'next_payment_amount' => ($upcomingInvoice?->rawAmountDue() / 100)
         ]);
 
         // Finally update the webhook
