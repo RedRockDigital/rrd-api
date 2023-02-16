@@ -33,7 +33,7 @@ class StripeWebhookMiddleware
             \Stripe\Webhook::constructEvent(
                 $request->getContent(),
                 $request->header('stripe-signature'),
-                config('services.stripe.webhook_secret')
+                config('cashier.webhook.secret')
             );
 
             // Check if the idempotency key has been used before
@@ -41,12 +41,10 @@ class StripeWebhookMiddleware
             if (Webhook::checkIdemKey($key = Arr::get($request->toArray(), 'request.idempotency_key'))) {
                 throw new StripeIdempotencyKeyException($key);
             }
-        } catch (SignatureVerificationException $e) {
-            return response()->json(['message' => 'Invalid Webhook Signature Provided'], Response::HTTP_BAD_REQUEST);
-        } catch (StripeIdempotencyKeyException $e) {
-            return response()->json(['message' => 'Idempotency Key Already Used'], Response::HTTP_BAD_REQUEST);
+        } catch (SignatureVerificationException|StripeIdempotencyKeyException $e) {
+            return response()->json(['message' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Invalid Webhook Request'], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(['message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
         return $next($request);

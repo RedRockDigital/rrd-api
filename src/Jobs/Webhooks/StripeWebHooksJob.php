@@ -80,11 +80,7 @@ final class StripeWebHooksJob implements ShouldQueue
         // TODO: Send email to user asking them to update their details.
 
         // Set the response
-        $this->webhook->setResponse(
-            $this->customerId,
-            $this->team->id,
-            'payments failed successfully flagged.'
-        );
+        $this->webhook->setResponse($this->customerId, $this->team->id, "payments failed successfully flagged.");
     }
 
     /**
@@ -109,7 +105,7 @@ final class StripeWebHooksJob implements ShouldQueue
 
         // Set the webhook to completed
         // And set the response
-        $this->webhook->setResponse($this->customerId, $this->team->id, ["subscription has been updated.",]);
+        $this->webhook->setResponse($this->customerId, $this->team->id, "subscription has been updated.");
     }
 
     /**
@@ -130,7 +126,7 @@ final class StripeWebHooksJob implements ShouldQueue
         $this->team->subscription()->delete();
 
         // Set the webhook to completed
-        $this->webhook->setResponse($this->customerId, $this->team->id, ["subscription has been cancelled.",]);
+        $this->webhook->setResponse($this->customerId, $this->team->id, "subscription has been cancelled.");
     }
 
     /**
