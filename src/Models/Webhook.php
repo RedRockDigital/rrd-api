@@ -90,8 +90,27 @@ final class Webhook extends Model
      *
      * @return void
      */
-    public static function markAsFailed(string $idemKey)
+    public static function markAsFailed(string $idemKey): void
     {
         self::whereIdemKey($idemKey)->update(['status' => 'failed']);
+    }
+
+    /**
+     * Set the response for a webhook
+     *
+     * @param string $customerId
+     * @param string $teamId
+     * @param string $message
+     *
+     * @return void
+     */
+    public function setResponse(string $customerId, string $teamId, string $message): void
+    {
+        $this->update([
+            'status'   => 'completed',
+            'response' => [
+                'message' => "Customer ID ($customerId) on Team ($teamId) $message",
+            ]
+        ]);
     }
 }

@@ -26,10 +26,10 @@ final class StripeWebHooksJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /** @var string  */
+    /** @var string */
     private string $customerId;
 
-    /** @var Team  */
+    /** @var Team */
     private Team $team;
 
     /**
@@ -57,7 +57,7 @@ final class StripeWebHooksJob implements ShouldQueue
         // Match the in-coming hook to the method
         // Off-load to the method and continue the logic.
         match ($this->webhook->hook) {
-            'invoice.payment_failed' => $this->handleInvoicePaymentFailed(),
+            'invoice.payment_failed'        => $this->handleInvoicePaymentFailed(),
             'customer.subscription.updated',
             'customer.subscription.created' => $this->handleSubscriptionUpdated(),
             'customer.subscription.deleted' => $this->handleSubscriptionDeleted(),
@@ -74,17 +74,17 @@ final class StripeWebHooksJob implements ShouldQueue
     private function handleInvoicePaymentFailed(): void
     {
         // Flag the team as payment failed
+        // This will allow frontend to notify the user to update their details
         $this->team->update(['payment_failed' => true]);
 
         // TODO: Send email to user asking them to update their details.
 
-        // Finally update the webhook
-        $this->webhook->update([
-            'status'   => 'completed',
-            'response' => [
-                'message' => "Customer ID ($this->customerId) on Team ({$this->team->id}) payments failed successfully flagged.",
-            ],
-        ]);
+        // Set the response
+        $this->webhook->setResponse(
+            $this->customerId,
+            $this->team->id,
+            'payments failed successfully flagged.'
+        );
     }
 
     /**
@@ -94,37 +94,22 @@ final class StripeWebHooksJob implements ShouldQueue
      */
     private function handleSubscriptionUpdated(): void
     {
-        // If the subscription is cancelled at the end of the period
-        // We need to update the subscription to cancelled
-        // This is because Stripe will not send a subscription cancelled
-        if (Arr::get($this->webhook->payload, 'object.cancel_at_period_end') !== null) {
-            $team->subscription()->update([
-                'stripe_status' => StripeStatus::CANCELLED,
-            ]);
-
-            return;
-        }
-
-        // If the subscription is not cancelled at the end of the period
-        // We will update the subscription with the new details and treat it as a normal update
-
-        /** @var Invoice $subscription */
-        $upcomingInvoice = $this->team->subscription()->upcomingInvoice();
+        // Get the up-coming invoice
+        // This will be used to get the next payment amount
+        /** @var Invoice $subscription */ $upcomingInvoice = $this->team->subscription()->upcomingInvoice();
 
         // Update the subscription
+        // This will update the next payment date and amount
+        // This will also update the price
         $this->team->subscription()->update([
-            'price'               => floatval(Arr::get($this->webhook->payload, 'object.plan.amount') / 100),
+            'next_payment_amount' => ($upcomingInvoice?->rawAmountDue() / 100),
             'next_payment_date'   => Arr::get($this->webhook->payload, 'object.current_period_end'),
-            'next_payment_amount' => ($upcomingInvoice?->rawAmountDue() / 100)
+            'price'               => floatval(Arr::get($this->webhook->payload, 'object.plan.amount') / 100),
         ]);
 
-        // Finally update the webhook
-        $this->webhook->update([
-            'status'   => 'completed',
-            'response' => [
-                'message' => "Customer ID ($this->customerId) on Team ({$this->team->id}) subscription has been updated.",
-            ],
-        ]);
+        // Set the webhook to completed
+        // And set the response
+        $this->webhook->setResponse($this->customerId, $this->team->id, ["subscription has been updated.",]);
     }
 
     /**
@@ -134,34 +119,18 @@ final class StripeWebHooksJob implements ShouldQueue
      */
     private function handleSubscriptionDeleted(): void
     {
-        // Try and locate the Team from the CustomerId
-        /** @var Team $team */
-        [$customerId, $team] = $this->locateTeamFromCustomerId();
+        // Set their teir to null
+        // As they have no active subscription on Stripe.
+        $team->update(['tier' => null]);
 
-        // Grab the FREE tier from our config.
-        $config = config(
-            sprintf('payments.%s.tiers.%s', Payments::getProvider(), 'FREE')
-        );
+        // As the subscription has been deleted from Stripe
+        // We will now delete the subscription from the database
+        // This will also delete the subscription items
+        $this->team->subscription()->items()->delete();
+        $this->team->subscription()->delete();
 
-        // We will downgrade their subscription down to the free tier
-        $team->update(['tier' => 'FREE']);
-
-        // Then we will update their subscription, based on the FREE Tier
-        // We cannot do this via the API, as the subscription is now cancelled.
-        $team->subscription()->update([
-            'price'         => 0,
-            'stripe_price'  => $config['key'],
-            'stripe_status' => StripeStatus::CANCELLED->name,
-            'ends_at'       => Arr::get($this->webhook->payload, 'object.ended_at'),
-        ]);
-
-        // Finally update the webhook
-        $this->webhook->update([
-            'status'   => 'completed',
-            'response' => [
-                'message' => "Customer ID ($customerId) on Team ($team->id) subscription as been cancelled successfully.",
-            ],
-        ]);
+        // Set the webhook to completed
+        $this->webhook->setResponse($this->customerId, $this->team->id, ["subscription has been cancelled.",]);
     }
 
     /**
@@ -181,19 +150,19 @@ final class StripeWebHooksJob implements ShouldQueue
                     'message' => 'Customer ID from payload was NULL',
                 ],
             ]);
-            exit;
+            return;
         }
 
         // We will now try and look-up the Customer ID on the Team Model
         // If we cannot find out, we will stop and log
-        if (($this->team = Team::whereStripeId($customerId)->first()) === null) {
+        if (($this->team = Team::whereStripeId($this->customerId)->first()) === null) {
             $this->webhook->update([
                 'status'   => 'failed',
                 'response' => [
-                    'message' => "Customer ID ($customerId) was not found on Team",
+                    'message' => "Customer ID ($this->customerId) was not found on Team",
                 ],
             ]);
-            exit;
+            return;
         }
     }
 }
