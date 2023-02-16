@@ -7,9 +7,9 @@ use Illuminate\Http\{AuthenticationException, JsonResponse, RedirectResponse, Re
 use Illuminate\Support\Facades\Auth;
 
 /**
- * Class Suspended
+ * Class IsSuspended
  */
-class Suspended
+class IsSuspended
 {
     /**
      * Determine if a User has been suspended and throw an authentication exception
