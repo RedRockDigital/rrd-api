@@ -25,31 +25,13 @@ final class WebHookController extends Controller
      */
     public function stripe(StripeWebhookRequest $request): JsonResponse
     {
-        $this->createHook(
-            'stripe',
-            $request->type,
-            $request->data,
-            $request->idem_key
-        );
+        Webhook::create([
+            'originator' => 'stripe',
+            'hook'       => $request->type,
+            'payload'    => $request->data,
+            'idem_key'   => $request->idem_key,
+        ]);
 
         return $this->response->respond(['message' => 'Stripe Webhook Received']);
-    }
-
-    /**
-     * @param string $originator
-     * @param string $hook
-     * @param mixed  $payload
-     * @param string $idemKey
-     *
-     * @return void
-     */
-    private function createHook(string $originator, string $hook, mixed $payload, string $idemKey): void
-    {
-        Webhook::create([
-            'originator' => $originator,
-            'hook'       => $hook,
-            'payload'    => $payload,
-            'idem_key'   => $idemKey,
-        ]);
     }
 }
