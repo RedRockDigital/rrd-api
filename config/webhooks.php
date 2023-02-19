@@ -1,9 +1,10 @@
 <?php
 
-use RedRockDigital\Api\Jobs\StripeWebhooks\SubscriptionUpdated;
+use RedRockDigital\Api\Jobs\StripeWebhooks\SubscriptionUpdatedJob;
 
 return [
     'stripe' => [
-        'subscription.updated' => SubscriptionUpdated::class,
+        'customer.subscription.updated' => SubscriptionUpdatedJob::class,
+        'customer.subscription.created' => SubscriptionUpdatedJob::class,
     ]
 ];

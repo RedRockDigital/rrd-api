@@ -129,36 +129,5 @@ final class StripeWebHooksJob implements ShouldQueue
         $this->webhook->setResponse($this->customerId, $this->team->id, "subscription has been cancelled.");
     }
 
-    /**
-     * This method locates the Customer ID and
-     * team from the in-coming webhook request
-     *
-     * @return array
-     */
-    private function locateTeamFromCustomerId(): void
-    {
-        // Grab the Customer ID from the payload,
-        // If we return as null ID, we will stop the command and log.
-        if (($this->customerId = Arr::get($this->webhook->payload, 'object.customer')) === null) {
-            $this->webhook->update([
-                'status'   => 'failed',
-                'response' => [
-                    'message' => 'Customer ID from payload was NULL',
-                ],
-            ]);
-            return;
-        }
-
-        // We will now try and look-up the Customer ID on the Team Model
-        // If we cannot find out, we will stop and log
-        if (($this->team = Team::whereStripeId($this->customerId)->first()) === null) {
-            $this->webhook->update([
-                'status'   => 'failed',
-                'response' => [
-                    'message' => "Customer ID ($this->customerId) was not found on Team",
-                ],
-            ]);
-            return;
-        }
-    }
+    
 }

@@ -5,44 +5,39 @@ namespace RedRockDigital\Api\Models;
 use RedRockDigital\Api\Traits\HasUuid;
 use ArrayAccess;
 use Barryvdh\LaravelIdeHelper\Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\{
+    Builder,
+    Model,
+    Collection
+};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Spatie\Tags\HasTags;
 
 /**
  * RedRockDigital\Api\Models\Webhook
  *
- * @property string           $id
- * @property string           $originator
- * @property string           $hook
- * @property mixed            $payload
- * @property mixed|null       $response
- * @property string           $status
- * @property string           $idem_key
- * @property Carbon|null      $created_at
- * @property Carbon|null      $updated_at
- * @property Collection|Tag[] $tags
- * @property-read int|null    $tags_count
+ * @property string      $id
+ * @property string      $provider
+ * @property string      $event
+ * @property mixed       $payload
+ * @property mixed|null  $output
+ * @property string      $status
+ * @property string      $identifier
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @method static Builder|Webhook newModelQuery()
  * @method static Builder|Webhook newQuery()
  * @method static Builder|Webhook query()
  * @method static Builder|Webhook whereCreatedAt($value)
- * @method static Builder|Webhook whereHook($value)
+ * @method static Builder|Webhook whereEvent($value)
  * @method static Builder|Webhook whereId($value)
- * @method static Builder|Webhook whereOriginator($value)
+ * @method static Builder|Webhook whereProvider($value)
  * @method static Builder|Webhook wherePayload($value)
- * @method static Builder|Webhook whereResponse($value)
+ * @method static Builder|Webhook whereOutput($value)
  * @method static Builder|Webhook whereStatus($value)
- * @method static Builder|Webhook whereIdemKey($value)
+ * @method static Builder|Webhook whereIdentifier($value)
  * @method static Builder|Webhook whereUpdatedAt($value)
- * @method static Builder|Webhook withAllTags(ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static Builder|Webhook withAllTagsOfAnyType($tags)
- * @method static Builder|Webhook withAnyTags(ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static Builder|Webhook withAnyTagsOfAnyType($tags)
- * @method static Builder|Webhook withoutTags(ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  *
  * @mixin Eloquent
  */
@@ -53,32 +48,35 @@ final class Webhook extends Model
     use HasUuid;
 
     /**
-     * @var string[]
+     * @var array $fillable
      */
     protected $fillable = [
-        'originator',
-        'hook',
+        'provider',
+        'event',
         'payload',
-        'response',
+        'output',
         'status',
-        'idem_key',
+        'identifier',
     ];
 
+    /**
+     * @var array $casts
+     */
     protected $casts = [
-        'payload'  => 'json',
-        'response' => 'json',
+        'payload' => 'json',
+        'output'  => 'json',
     ];
 
     /**
      * Check if a webhook with the given idem key exists
      *
-     * @param string $idemKey
+     * @param string $identifier
      *
      * @return bool
      */
-    public static function checkIdemKey(string $idemKey): bool
+    public static function checkIdentifier(string $identifier): bool
     {
-        return self::whereIdemKey($idemKey)
+        return self::whereIdentifier($identifier)
             ->whereIn('status', ['processing', 'completed'])
             ->exists();
     }
@@ -111,12 +109,12 @@ final class Webhook extends Model
      *
      * @return void
      */
-    public function setResponse(string $customerId, string $teamId, string $message): void
+    public function setTeamResponse(string $teamId, string $message): void
     {
         $this->update([
-            'status'   => 'completed',
-            'response' => [
-                'message' => "Customer ID ($customerId) on Team ($teamId) $message",
+            'status' => 'completed',
+            'output'  => [
+                'message' => "Team ($teamId) $message",
             ]
         ]);
     }
