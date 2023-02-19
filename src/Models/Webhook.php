@@ -71,7 +71,7 @@ final class Webhook extends Model
 
     /**
      * Check if a webhook with the given idem key exists
-     * 
+     *
      * @param string $idemKey
      *
      * @return bool
@@ -85,14 +85,21 @@ final class Webhook extends Model
 
     /**
      * Marks a webhook as failed due to an exception
-     * 
-     * @param string $idemKey
+     *
+     * @param string $key
+     * @param string $error
      *
      * @return void
      */
-    public static function markAsFailed(string $idemKey): void
+    public function markAsFailed(string $error = ''): void
     {
-        self::whereIdemKey($idemKey)->update(['status' => 'failed']);
+        $this->update([
+            'status' => 'failed',
+            'output' => [
+                'message' => 'An exception was thrown while processing the webhook',
+                'error'   => $error
+            ]
+        ]);
     }
 
     /**

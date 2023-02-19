@@ -15,12 +15,12 @@ return new class () extends Migration {
         Schema::create('webhooks', static function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->string('originator');
-            $table->string('hook');
+            $table->string('provider');
+            $table->string('event');
             $table->json('payload');
-            $table->json('response')->nullable();
+            $table->json('ouput')->nullable();
             $table->string('status')->default('queued');
-            $table->text('idem_key');
+            $table->text('key')->unique();
 
             $table->timestamps();
         });
