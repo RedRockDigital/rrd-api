@@ -33,6 +33,7 @@ class MainPolicy extends Basic
 
         $this->addDirective(Directive::SCRIPT, 'https://beacon-v2.helpscout.net/');
         $this->addDirective(Directive::SCRIPT, 'https://js.stripe.com/');
+        $this->addDirective(Directive::SCRIPT, 'https://cdn.usefathom.com/');
 
         $this->addDirective(Directive::FRAME, 'https://js.stripe.com/');
 
