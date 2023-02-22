@@ -37,7 +37,6 @@ class MainPolicy extends Basic
 
         $this->addDirective(Directive::FRAME, 'https://js.stripe.com/');
 
-        $this->addDirective(Directive::CONNECT, config('app.url'));
         $this->addDirective(Directive::CONNECT, 'https://d3hb14vkzrxvla.cloudfront.net/');
         $this->addDirective(Directive::CONNECT, 'https://chatapi.helpscout.net/');
         $this->addDirective(Directive::CONNECT, 'https://beaconapi.helpscout.net/');
@@ -54,6 +53,7 @@ class MainPolicy extends Basic
 
         foreach ($this->cloudFrontDirectives as $directive) {
             $this->addDirective($directive, asset(''));
+            $this->addDirective($directive, config('app.url'));
         }
     }
 }
