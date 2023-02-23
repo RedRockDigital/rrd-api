@@ -49,9 +49,9 @@ final class InvoicePaymentFailedJob extends StripeWebhookJob implements ShouldQu
             
             // Send an email to the team owner
             // This will allow the team owner to update their details
-            Mail::to(config('base.support_email'))->send(new PaymentFailed(
+            Mail::to($email = $this->team->owner->email)->send(new PaymentFailed(
                 name: $this->team->owner->first_name,
-                email: $this->team->owner->email,
+                email: $email,
                 body: "Payment failed for team {$this->team->name}."
             ));
 
