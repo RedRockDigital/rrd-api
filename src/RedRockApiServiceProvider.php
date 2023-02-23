@@ -104,9 +104,14 @@ class RedRockApiServiceProvider extends ServiceProvider
         // TODO: Move payment service into contained repo.
         Cashier::ignoreMigrations();
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/auth-guards.php', 'auth.guards');
+        // Merge auth guards
+        $this->mergeConfigFrom(__DIR__ . '/../config/mergables/auth-guards.php', 'auth.guards');
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/auth-providers.php', 'auth.providers');
+        // Merge auth providers
+        $this->mergeConfigFrom(__DIR__ . '/../config/mergables/auth-providers.php', 'auth.providers');
+
+        // Merge stripe webhooks
+        $this->mergeConfigFrom(__DIR__ . '/../config/mergables/webhooks-stripe.php', 'webhooks.stripe');
     }
 
     /**
@@ -184,6 +189,7 @@ class RedRockApiServiceProvider extends ServiceProvider
                 __DIR__ . '/../config/payments.php' => config_path('payments.php'),
                 __DIR__ . '/../config/csp.php' => config_path('csp.php'),
                 __DIR__ . '/../config/nova.php' => config_path('nova.php'),
+                __DIR__ . '/../config/webhooks.php' => config_path('webhooks.php'),
             ]);
 
             // Registering package commands.
