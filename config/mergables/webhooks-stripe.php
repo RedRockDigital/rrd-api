@@ -1,5 +1,7 @@
 <?php
 
+use RedRockDigital\Api\Jobs\StripeWebhooks\InvoicePaymentFailedJob;
+
 return [
-    'stripe' => []
+    'invoice.payment_failed' => InvoicePaymentFailedJob::class
 ];
