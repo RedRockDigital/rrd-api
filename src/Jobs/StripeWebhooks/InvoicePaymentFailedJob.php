@@ -14,6 +14,7 @@ use Illuminate\Queue\{
     SerializesModels
 };
 use Illuminate\Support\Arr;
+use RedRockDigital\Api\Services\Payments\Providers\Stripe\Enums\StripeStatus;
 
 /**
  * Final Class InvoicePaymentFailedJob
@@ -46,6 +47,7 @@ final class InvoicePaymentFailedJob extends StripeWebhookJob implements ShouldQu
             // Flag the team as payment failed
             // This will allow frontend to notify the user to update their details
             $this->team->update(['payment_failed' => true]);
+            $this->team->subscription()->update(['stripe_status' => StripeStatus::PAST_DUE->value]);
             
             // Send an email to the team owner
             // This will allow the team owner to update their details
