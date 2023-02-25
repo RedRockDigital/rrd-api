@@ -22,6 +22,7 @@ use RedRockDigital\Api\Providers\EventServiceProvider;
 use RedRockDigital\Api\Providers\NovaServiceProvider;
 use RedRockDigital\Api\Providers\PaymentServiceProvider;
 use RedRockDigital\Api\Providers\RouteServiceProvider;
+use RedRockDigital\Api\Providers\TelescopeServiceProvider;
 use RedRockDigital\Api\Providers\VaporUiServiceProvider;
 use RedRockDigital\Api\Services\Payments\Payments;
 use Spatie\Csp\AddCspHeaders;
@@ -93,6 +94,9 @@ class RedRockApiServiceProvider extends ServiceProvider
 
         // Load Vapor UI Service Provider
         $this->app->register(VaporUiServiceProvider::class);
+        
+        // Load Telescope Service Provider
+        $this->app->register(TelescopeServiceProvider::class);
     }
 
     /**
@@ -190,6 +194,7 @@ class RedRockApiServiceProvider extends ServiceProvider
                 __DIR__ . '/../config/csp.php' => config_path('csp.php'),
                 __DIR__ . '/../config/nova.php' => config_path('nova.php'),
                 __DIR__ . '/../config/webhooks.php' => config_path('webhooks.php'),
+                __DIR__ . '/../config/telescope.php' => config_path('telescope.php'),
             ]);
 
             // Registering package commands.

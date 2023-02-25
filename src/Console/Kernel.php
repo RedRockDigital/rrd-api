@@ -21,6 +21,9 @@ class Kernel extends ConsoleKernel
 
         // Auth
         $schedule->command('send-registration-reminders')->dailyAt('08:00');
+        
+        // Telescope
+        $schedule->command('telescope:prune --hours=48')->daily();
     }
 
     /**

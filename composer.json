@@ -18,7 +18,10 @@
   "require": {
     "php": "^8.2",
     "illuminate/support": "^v9.0",
-    "spatie/laravel-csp": "^2.8"
+    "spatie/laravel-csp": "^2.8",
+    "laravel/telescope": "^4.14",
+    "laravel/passport": "^10.4",
+    "laravel/nova": "~4.0"
   },
   "require-dev": {
     "orchestra/testbench": "^6.0",
