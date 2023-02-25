@@ -1,6 +1,6 @@
 <?php
 
-namespace RedRockDigital\Api\Mail;
+namespace RedRockDigital\Api\Mail\Stripe;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;

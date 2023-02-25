@@ -74,9 +74,10 @@ final class Webhook extends Model
      *
      * @return bool
      */
-    public static function checkIdentifier(string $identifier): bool
+    public static function verify(string $identifier, string $event): bool
     {
         return self::whereIdentifier($identifier)
+            ->whereEvent($event)
             ->whereIn('status', ['processing', 'completed'])
             ->exists();
     }

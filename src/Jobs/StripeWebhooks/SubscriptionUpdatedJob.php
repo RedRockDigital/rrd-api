@@ -12,6 +12,7 @@ use Illuminate\Queue\{
     SerializesModels
 };
 use Illuminate\Support\Arr;
+use RedRockDigital\Api\Services\Payments\Providers\Stripe\Enums\StripeStatus;
 
 /**
  * Final Class SubscriptionUpdatedJob
@@ -41,9 +42,22 @@ final class SubscriptionUpdatedJob extends StripeWebhookJob implements ShouldQue
     public function handle(): void
     {
         try {
+            // Grab the payload from the webhook
+            $payload = $this->webhook->payload;
+            $stripeStatus = StripeStatus::tryFrom(Arr::get($payload, 'object.status'));
+
+            // If the status is past due, this is most likely a failed payment
+            // Which will be handled on the InvoicePaymentFailedJob
+            // So we can just return here
+            if ($stripeStatus === StripeStatus::PAST_DUE) {
+                $this->webhook->setTeamResponse($this->team->id, "subscription is past due, so we will not update it.");
+                return;
+            }
+
             // Get the up-coming invoice
             // This will be used to get the next payment amount
-            /** @var Invoice $subscription */ $upcomingInvoice = $this->team->subscription()->upcomingInvoice();
+            /** @var Invoice $subscription */
+            $upcomingInvoice = $this->team->subscription()->upcomingInvoice();
 
             // Update the subscription
             // This will update the next payment date and amount
@@ -51,8 +65,15 @@ final class SubscriptionUpdatedJob extends StripeWebhookJob implements ShouldQue
             $this->team->subscription()->update([
                 'next_payment_amount' => ($upcomingInvoice?->rawAmountDue() / 100),
                 'next_payment_date'   => Arr::get($this->webhook->payload, 'object.current_period_end'),
-                'price'               => (double)(Arr::get($this->webhook->payload, 'object.plan.amount') / 100)
+                'price'               => (double)(Arr::get($this->webhook->payload, 'object.plan.amount') / 100),
+                'stripe_status'       => $stripeStatus
             ]);
+
+            // The team has now paid
+            // So we can flag the team as not payment failed, if previously flagged
+            if ($stripeStatus === StripeStatus::ACTIVE &&! $this->team->payment_failed) {
+                $this->team->update(['payment_failed' => false]);
+            }
 
             // Set the webhook to completed
             // And set the response

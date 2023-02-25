@@ -38,8 +38,11 @@ class StripeWebhookMiddleware
 
             // Check if the idempotency key has been used before
             // If it has, throw an exception
-            if (Webhook::checkIdentifier($key = Arr::get($request->toArray(), 'request.idempotency_key'))) {
-                throw new StripeIdempotencyKeyException($key);
+            if (Webhook::verify(
+                $key = Arr::get($request->toArray(), 'request.idempotency_key'),
+                $event = Arr::get($request->toArray(), 'type'),
+            )) {
+                throw new StripeIdempotencyKeyException($key, $event);
             }
         } catch (SignatureVerificationException|StripeIdempotencyKeyException $e) {
             return response()->json(['message' => $e->getMessage()], Response::HTTP_BAD_REQUEST);
