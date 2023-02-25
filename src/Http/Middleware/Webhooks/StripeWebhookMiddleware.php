@@ -30,11 +30,11 @@ class StripeWebhookMiddleware
         try {
             // Construct the Stripe Event
             // If the signature is invalid, throw an exception
-//            \Stripe\Webhook::constructEvent(
-//                $request->getContent(),
-//                $request->header('stripe-signature'),
-//                config('cashier.webhook.secret')
-//            );
+            \Stripe\Webhook::constructEvent(
+                $request->getContent(),
+                $request->header('stripe-signature'),
+                config('cashier.webhook.secret')
+            );
 
             // Check if the idempotency key has been used before
             // If it has, throw an exception
