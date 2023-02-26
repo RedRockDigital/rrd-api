@@ -5,10 +5,12 @@ namespace RedRockDigital\Api\Http\Middleware\Webhooks;
 use RedRockDigital\Api\Exceptions\Webhooks\StripeIdempotencyKeyException;
 use RedRockDigital\Api\Models\Webhook;
 use Closure;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Http\{
+    JsonResponse,
+    RedirectResponse,
+    Request,
+    Response
+};
 use Illuminate\Support\Arr;
 
 /**

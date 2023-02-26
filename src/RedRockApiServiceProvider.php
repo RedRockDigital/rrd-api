@@ -5,11 +5,12 @@ namespace RedRockDigital\Api;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Cashier;
 use Laravel\Passport\Passport;
-use RedRockDigital\Api\Console\Commands\InstallCommand;
-use RedRockDigital\Api\Console\Commands\PruneLogs;
-use RedRockDigital\Api\Console\Commands\SendRegistrationReminders;
-use RedRockDigital\Api\Console\Commands\SetupCommand;
-use RedRockDigital\Api\Database\Seeders\Local\LocalSeeder;
+use RedRockDigital\Api\Console\Commands\{
+    InstallCommand,
+    PruneLogs,
+    SendRegistrationReminders,
+    SetupCommand
+};
 use RedRockDigital\Api\Http\Middleware\SecurityHeaders;
 use RedRockDigital\Api\Models\Group;
 use Illuminate\Auth\Notifications\VerifyEmail;
@@ -17,14 +18,15 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factories;
 use Illuminate\Contracts\Http\Kernel;
-use RedRockDigital\Api\Providers\AuthServiceProvider;
-use RedRockDigital\Api\Providers\EventServiceProvider;
-use RedRockDigital\Api\Providers\NovaServiceProvider;
-use RedRockDigital\Api\Providers\PaymentServiceProvider;
-use RedRockDigital\Api\Providers\RouteServiceProvider;
-use RedRockDigital\Api\Providers\TelescopeServiceProvider;
-use RedRockDigital\Api\Providers\VaporUiServiceProvider;
-use RedRockDigital\Api\Services\Payments\Payments;
+use RedRockDigital\Api\Providers\{
+    AuthServiceProvider,
+    EventServiceProvider,
+    NovaServiceProvider,
+    PaymentServiceProvider,
+    RouteServiceProvider,
+    TelescopeServiceProvider,
+    VaporUiServiceProvider
+};
 use Spatie\Csp\AddCspHeaders;
 
 class RedRockApiServiceProvider extends ServiceProvider
@@ -116,17 +118,6 @@ class RedRockApiServiceProvider extends ServiceProvider
 
         // Merge stripe webhooks
         $this->mergeConfigFrom(__DIR__ . '/../config/mergables/webhooks-stripe.php', 'webhooks.stripe');
-    }
-
-    /**
-     * Load the routes for the application.
-     *
-     * @return void
-     */
-    private function loadRoutes(): void
-    {
-        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
-        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
     }
 
     /**

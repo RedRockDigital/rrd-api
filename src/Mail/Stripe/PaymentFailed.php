@@ -4,8 +4,10 @@ namespace RedRockDigital\Api\Mail\Stripe;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\{
+    Content,
+    Envelope
+};
 use Illuminate\Queue\SerializesModels;
 
 class PaymentFailed extends Mailable
