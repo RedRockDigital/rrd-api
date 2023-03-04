@@ -3,6 +3,7 @@
 namespace RedRockDigital\Api\Listeners\Stripe;
 
 use RedRockDigital\Api\Events\TeamCreated;
+use RedRockDigital\Api\Models\SubscriptionPlan;
 use RedRockDigital\Api\Services\Payments\Payments;
 
 final class StripeCustomerCreationListener
@@ -15,14 +16,20 @@ final class StripeCustomerCreationListener
      */
     public function handle(TeamCreated $event): void
     {
+        // Create the customer in Stripe.
         Payments::createCustomer($event->team);
 
-        if (array_key_exists('FREE', config(sprintf('payments.%s.tiers', Payments::getProvider())))) {
-            Payments::changeSubscription($event->team, 'FREE');
-
-            $event->team->update([
-                'allowances' => Payments::getAllowances($event->team),
-            ]);
+        // If the FREE tier is not in the config, return.
+        if (($plan = SubscriptionPlan::whereStatic('FREE PLAN')->first()) === null) {
+            return;
         }
+
+        // Change the subscription to the FREE tier.
+        Payments::changeSubscription($event->team, $plan->static);
+
+        // Update the team's allowances.
+        $event->team->update([
+            'allowances' => Payments::getAllowances($event->team),
+        ]);
     }
 }

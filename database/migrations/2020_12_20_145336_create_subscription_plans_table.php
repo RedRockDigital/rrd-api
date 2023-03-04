@@ -17,10 +17,12 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             $table->string('name');
+            $table->string('static');
             $table->double('price');
+            $table->integer('quantity')->nullable();
 
-            $table->string('stripe_product_id');
-            $table->string('stripe_price_id');
+            $table->string('product_id')->nullable();
+            $table->string('price_id')->nullable();
 
             $table->timestamps();
         });

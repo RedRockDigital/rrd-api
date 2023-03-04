@@ -96,12 +96,6 @@ if (!function_exists('terminate')) {
      */
     function terminate(Throwable $throwable): void
     {
-        if ($throwable->getCode() <= 499) {
-            abort($throwable->getCode(), $throwable->getMessage());
-        }
-
-        if ($throwable->getCode() >= 500 && $throwable->getCode() <= 599) {
-            throw $throwable;
-        }
+        abort($throwable->getCode(), $throwable->getMessage());
     }
 }
