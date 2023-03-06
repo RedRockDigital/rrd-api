@@ -15,7 +15,7 @@ class UpdateInformAction
     public function __invoke(User $user = null, string $inform = ''): bool
     {
         $user = $user ?? auth()->user();
-        $inform = InformEnums::fromName($inform);
+        $inform = informable($inform);
 
         if ($inform !== null) {
             $user->canBeInformed($inform) ? $user->unInform($inform) : $user->inform($inform);
