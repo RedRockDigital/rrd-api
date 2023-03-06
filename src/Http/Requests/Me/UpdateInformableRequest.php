@@ -20,7 +20,7 @@ class UpdateInformableRequest extends FormRequest
     {
         return [
             'informable' => ['required', Rule::in(
-                array_column(InformEnums::cases(), 'name')
+                array_keys(config('informables', [])),
             )],
         ];
     }

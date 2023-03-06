@@ -153,7 +153,7 @@ class RedRockApiServiceProvider extends ServiceProvider
         Factories\Factory::guessFactoryNamesUsing(function (string $modelName) {
             $baseName = class_basename($modelName) . 'Factory';
 
-            if (Str::before($modelName, '\\') !== 'App')  {
+            if (Str::before($modelName, '\\') !== 'App') {
                 return self::$rrdApiFactoryNamespace . $baseName;
             }
 
@@ -163,10 +163,10 @@ class RedRockApiServiceProvider extends ServiceProvider
         Factories\Factory::guessModelNamesUsing(function ($factory) {
             $baseName = Str::replaceLast('Factory', '', class_basename($factory));
 
-            if (Str::before($factory::class, '\\') !== 'Database')  {
+            if (Str::before($factory::class, '\\') !== 'Database') {
                 return self::$rrdApiModelNamespace . $baseName;
             }
-            
+
             return self::$appModelNamespace . $baseName;
         });
     }
@@ -180,10 +180,11 @@ class RedRockApiServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/base.php'     => config_path('base.php'),
-                __DIR__ . '/../config/payments.php' => config_path('payments.php'),
-                __DIR__ . '/../config/csp.php' => config_path('csp.php'),
-                __DIR__ . '/../config/nova.php' => config_path('nova.php'),
+                __DIR__ . '/../config/base.php'        => config_path('base.php'),
+                __DIR__ . '/../config/payments.php'    => config_path('payments.php'),
+                __DIR__ . '/../config/csp.php'         => config_path('csp.php'),
+                __DIR__ . '/../config/nova.php'        => config_path('nova.php'),
+                __DIR__ . '/../config/informables.php' => config_path('informables.php'),
             ]);
 
             // Registering package commands.
