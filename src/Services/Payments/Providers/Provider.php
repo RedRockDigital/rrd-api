@@ -16,19 +16,6 @@ use RedRockDigital\Api\Services\Payments\Providers\Stripe\Exceptions\CustomerNot
 abstract class Provider
 {
     /**
-     * Get the tier config for the provider.
-     *
-     * @param Team|null $team
-     *
-     * @return User
-     */
-    public function tier(string $name): SubscriptionPlan
-    {
-        // Get the tier from the database.
-        return SubscriptionPlan::whereStatic($name)->firstOrFail();
-    }
-
-    /**
      * Determine in a friendly name the provider.
      *
      * @param string|null $provider
@@ -50,6 +37,19 @@ abstract class Provider
     }
 
     /**
+     * Get the tier config for the provider.
+     *
+     * @param Team|null $team
+     *
+     * @return User
+     */
+    public function tier(string $name): SubscriptionPlan
+    {
+        // Get the tier from the database.
+        return SubscriptionPlan::whereStatic($name)->firstOrFail();
+    }
+
+    /**
      * @param Team|null $team
      *
      * @return array|null
@@ -58,7 +58,7 @@ abstract class Provider
     {
         // Get the allowances for the team from the config for their tier.
         return config(
-            sprintf('payments.%s.tiers.%s.allowances', self::provider(), $team->tier)
+            sprintf('payments.%s.tiers.%s', self::provider(), $team->tier)
         );
     }
 

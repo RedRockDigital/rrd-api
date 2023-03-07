@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 use Laravel\Cashier\Subscription;
+use RedRockDigital\Api\Models\Stripe\Subscription as StripeSubscription;
+use RedRockDigital\Api\Models\SubscriptionPlan;
 
 /**
- * @mixin Subscription
- * @mixin \RedRockDigital\Api\Models\Subscription
+ * @mixin StripeSubscription
+ * @mixin SubscriptionPlan
  */
 class SubscriptionShowResource extends JsonResource
 {
@@ -25,15 +27,13 @@ class SubscriptionShowResource extends JsonResource
     {
         return [
             'id'                 => $this->id,
-            'name'               => $this->name,
-            'price'              => $this->price,
+            'name'               => $this->plan->name,
+            'tier'               => $this->plan->static,
+            'price'              => $this->plan->price,
             'status'             => $this->stripe_status,
             'next_payment_date'  => $this->next_payment_date,
             'is_trial'           => $this->owner->trial_ends_at !== null,
             'trial_end'          => $this->owner->trial_ends_at,
-            'tier'               => $this->owner->tier,
-            'tier'               => $this->owner->friendly_tier_name,
-            'friendly_tier_name' => $this->owner->friendly_tier_name,
             'allowances'         => $this->owner->allowances,
         ];
     }

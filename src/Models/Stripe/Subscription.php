@@ -2,6 +2,7 @@
 
 namespace RedRockDigital\Api\Models\Stripe;
 
+use RedRockDigital\Api\Models\SubscriptionPlan;
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Illuminate\Database\Eloquent\{
     Builder,
@@ -116,5 +117,15 @@ final class Subscription extends \Laravel\Cashier\Subscription
         $model = config('cashier.model');
 
         return $this->belongsTo($model, (new $model())->getForeignKey())->withoutGlobalScopes();
+    }
+    
+    /**
+     * Get the plan associated with the subscription.
+     *
+     * @return BelongsTo
+     */
+    public function plan(): BelongsTo
+    {
+        return $this->belongsTo(SubscriptionPlan::class, 'subscription_plan_id');
     }
 }

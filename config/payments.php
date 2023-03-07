@@ -8,8 +8,7 @@ return [
     |--------------------------------------------------------------------------
     | Provider
     |--------------------------------------------------------------------------
-    | This will tell the system, which Provider to bind to the interface.
-    | More providers can be added and adapted at later dates.
+    | This is the active provider that will be used for the payment system.
     */
     'provider'  => StripeService::class,
 
@@ -39,51 +38,16 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | Tier List Quantities
+        | Tier Settings
         |--------------------------------------------------------------------------
-        | If you're using a QTY based pricing, this will take one price
-        | and increment the amount of QTY * cost on the subscription.
-        |
-        | If the QUANTITY is active, please set each tier against a number qty.
-        | If the KEYS is active, please set each tier against a price key from the provider.
+        | Below you can define statically, what a user can do based on their tier.
+        | This config will drive the system to allow or deny access.
         */
         'tiers' => [
-            'FREE'     => [
-                'name'       => 'Free',
-                'key'        => 'price_1MOn6uKkXCnLx7Bwb3N7syQW',
-                'quantity'   => null,
-                'price'      => 0,
-                'allowances' => [
-                    'submissions' => 50,
-                ],
-            ],
-            'PERSONAL' => [
-                'name'       => 'Personal',
-                'key'        => 'price_1LyCWTKkXCnLx7BwnpePTeiN',
-                'quantity'   => null,
-                'price'      => 5,
-                'allowances' => [
-                    'submissions' => 100,
-                ],
-            ],
-            'SMALL'    => [
-                'name'       => 'Small',
-                'key'        => 'price_1MDGSKKkXCnLx7Bw4JrGAlyb',
-                'quantity'   => null,
-                'price'      => 10,
-                'allowances' => [
-                    'submissions' => 200,
-                ],
-            ],
-            'GROWTH'   => [
-                'name'       => 'Growth',
-                'key'        => 'price_1MQT33KkXCnLx7BwnMufHc0l',
-                'quantity'   => null,
-                'price'      => 15,
-                'allowances' => [
-                    'submissions' => 300,
-                ],
-            ],
+            'FREE'     => [],
+            'PERSONAL' => [],
+            'SMALL'    => [],
+            'GROWTH'   => [],
         ],
     ],
 ];

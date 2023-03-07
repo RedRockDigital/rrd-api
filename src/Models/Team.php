@@ -156,11 +156,8 @@ class Team extends Model
      *
      * @return string
      */
-    public function getFriendlyTierNameAttribute(): string
+    public function getFriendlyTierNameAttribute(): ?string
     {
-        return config(sprintf("payments.%s.tiers.%s.name",
-            Payments::getProvider(),
-            $this->tier
-        ));
+        return $this->subscription()->plan?->name;
     }
 }

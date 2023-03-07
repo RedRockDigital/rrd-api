@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpMissingFieldTypeInspection */
-
 namespace RedRockDigital\Api\Models;
 
 use Barryvdh\LaravelIdeHelper\Eloquent;

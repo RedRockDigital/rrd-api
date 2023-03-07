@@ -51,11 +51,12 @@ final class StripeSetup extends Command
 
                 // Create or update the subscription plan
                 SubscriptionPlan::updateOrCreate([
+                    'price_id' => $price->id,
+                ], [
                     'name'       => $product->name,
                     'static'     => Str::upper($product->name),
                     'product_id' => $product->id,
                     'price'      => $price->unit_amount / 100,
-                    'price_id'   => $price->id,
                 ]);
             });
         } catch (\Exception $e) {

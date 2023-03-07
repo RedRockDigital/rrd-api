@@ -19,7 +19,7 @@ return new class () extends Migration {
             $table->bigIncrements('id');
             $table->foreignUuid('team_id');
             $table->string('stripe_id');
-            $table->foreignUuid('subscription_plan_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('subscription_plan_id')->nullable()->constrained()->cascadeOnDelete();
 
             $table->string('stripe_status');
             $table->integer('quantity')->nullable();

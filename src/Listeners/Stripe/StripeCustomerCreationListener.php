@@ -20,7 +20,7 @@ final class StripeCustomerCreationListener
         Payments::createCustomer($event->team);
 
         // If the FREE tier is not in the config, return.
-        if (($plan = SubscriptionPlan::whereStatic('FREE PLAN')->first()) === null) {
+        if (($plan = SubscriptionPlan::whereStatic('FREE')->first()) === null) {
             return;
         }
 
