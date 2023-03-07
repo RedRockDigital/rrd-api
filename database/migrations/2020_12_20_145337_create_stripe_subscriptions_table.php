@@ -15,10 +15,11 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('subscriptions', static function (Blueprint $table) {
+        Schema::create('stripe_subscriptions', static function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignUuid('team_id');
-            $table->foreignUuid('subscription_plan_id')->constrained()->cascadeOnDelete();
+            $table->string('stripe_id');
+            $table->foreignUuid('subscription_plan_id')->nullable()->constrained()->cascadeOnDelete();
 
             $table->string('stripe_status');
             $table->integer('quantity')->nullable();
@@ -28,7 +29,7 @@ return new class () extends Migration {
             $table->float('next_payment_amount')->nullable();
             $table->timestamps();
 
-            $table->index(['team_id', 'stripe_status']);
+            $table->index(['team_id', 'stripe_status', 'stripe_id']);
         });
     }
 

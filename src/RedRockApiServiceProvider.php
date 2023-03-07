@@ -9,6 +9,7 @@ use RedRockDigital\Api\Console\Commands\InstallCommand;
 use RedRockDigital\Api\Console\Commands\PruneLogs;
 use RedRockDigital\Api\Console\Commands\SendRegistrationReminders;
 use RedRockDigital\Api\Console\Commands\SetupCommand;
+use RedRockDigital\Api\Console\Commands\StripeSetup;
 use RedRockDigital\Api\Database\Seeders\Local\LocalSeeder;
 use RedRockDigital\Api\Http\Middleware\SecurityHeaders;
 use RedRockDigital\Api\Models\Group;
@@ -193,6 +194,7 @@ class RedRockApiServiceProvider extends ServiceProvider
                 PruneLogs::class,
                 SendRegistrationReminders::class,
                 SetupCommand::class,
+                StripeSetup::class,
             ]);
         }
     }

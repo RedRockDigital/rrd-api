@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Facade;
  *
  * @method static getCustomer(string $id)
  * @method static getAllowances(?Team $team)
- * @method static getProvider(?string $provider = null)
+ * @method static provider(?string $provider = null)
  * @method static createCustomer(?Team $team)
  * @method static updateCustomer(?Team $team)
  * @method static hasSubscription(?Team $team)

@@ -4,9 +4,12 @@ namespace RedRockDigital\Api\Models;
 
 use RedRockDigital\Api\Events\TeamCreated;
 use RedRockDigital\Api\Models\Pivot\TeamUser;
+use RedRockDigital\Api\Models\Stripe\Subscription;
 use RedRockDigital\Api\Services\Payments\Payments;
-use RedRockDigital\Api\Traits\HasInformable;
-use RedRockDigital\Api\Traits\HasUuid;
+use RedRockDigital\Api\Traits\{
+    HasInformable,
+    HasUuid
+};
 use Barryvdh\LaravelIdeHelper\Eloquent;
 use Database\Factories\TeamFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -139,15 +142,13 @@ class Team extends Model
     /**
      * Get a subscription instance by name.
      *
-     * @noinspection ParameterDefaultValueIsNotNullInspection
-     *
      * @param string $name
      *
      * @return ?Subscription
      */
-    public function subscription($name = 'default'): ?Subscription
+    public function subscription(): ?Subscription
     {
-        return $this->subscriptions->where('name', $name)->first();
+        return $this->subscriptions()->where('team_id', $this->id)->first();
     }
 
     /**
@@ -155,11 +156,8 @@ class Team extends Model
      *
      * @return string
      */
-    public function getFriendlyTierNameAttribute(): string
+    public function getFriendlyTierNameAttribute(): ?string
     {
-        return config(sprintf("payments.%s.tiers.%s.name",
-            Payments::getProvider(),
-            $this->tier
-        ));
+        return $this->subscription()->plan?->name;
     }
 }

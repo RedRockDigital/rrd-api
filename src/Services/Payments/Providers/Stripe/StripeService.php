@@ -2,10 +2,9 @@
 
 namespace RedRockDigital\Api\Services\Payments\Providers\Stripe;
 
-use RedRockDigital\Api\Models\{
-    Subscription,
-    Team
-};
+use RedRockDigital\Api\Services\Payments\PaymentsInterface;
+use RedRockDigital\Api\Models\Team;
+use RedRockDigital\Api\Models\Stripe\Subscription;
 use RedRockDigital\Api\Services\Payments\Providers\Provider;
 use RedRockDigital\Api\Services\Payments\Providers\Stripe\Enums\StripeMode;
 use RedRockDigital\Api\Services\Payments\Providers\Stripe\Exceptions\{
@@ -39,7 +38,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Final Class StripeService
  */
-final class StripeService extends Provider
+final class StripeService extends Provider implements PaymentsInterface
 {
     /**
      * createCustomer
@@ -60,7 +59,7 @@ final class StripeService extends Provider
             'description' => $owner->full_name,
             'email'       => $owner->email,
             'metadata'    => [
-                'ENV'      => $this->getEnvMeta(),
+                'ENV'      => $this->getMeta(),
                 'referral' => $owner->referral,
             ],
         ]);
@@ -192,17 +191,23 @@ final class StripeService extends Provider
     public function changeSubscription(?Team $team, string $tier = null): void
     {
         // First of all, let's determine the Tier list array
-        // this array consists of the price_key (if different), name and quantity.
-        $tierConfig = self::determineTier($tier);
+        // this object consists of the price_key (if different), name and quantity.
+        $configuration = $this->tier($tier);
 
         // If the user currently does not have a subscription on the application
         // We will go ahead and create a new Subscription and attach the correct tier level.
         if ($this->hasSubscription($team) === false) {
             try {
                 $subscription = $team
-                    ?->newSubscription('default', $tierConfig['key'])
-                    ->quantity($tierConfig['quantity'] ?? 1)
-                    ->create();
+                    ?->newSubscription('default', $configuration->price_id);
+
+                // If the quantity is not null, we will set the quantity
+                if ($configuration->quantity !== null) {
+                    $subscription->quantity($configuration->quantity);
+                }
+
+                // Finally, we will create the subscription
+                $subscription->create();
             } catch (IncompletePayment|Exception $exception) {
                 terminate(new AddSubscriptionFailedException($exception, $team->id));
             }
@@ -218,14 +223,12 @@ final class StripeService extends Provider
                     case StripeMode::QUANTITY:
                         // If the StripeMode is set to QUANTITY, we will just update
                         // the quantity level on the subscription
-                        $subscription->updateQuantity($tierConfig['quantity']);
-
+                        $subscription->updateQuantity($configuration->quantity);
                         break;
                     case StripeMode::KEYS:
                         // If the StripeMode is KEYS we will change the subscription
                         // to the correct key for the selected tier.
-                        $subscription->swapAndInvoice($tierConfig['key']);
-
+                        $subscription->swapAndInvoice($configuration->price_id);
                         break;
                 }
             } catch (SubscriptionUpdateFailure $exception) {
@@ -233,6 +236,10 @@ final class StripeService extends Provider
             }
         }
 
+        // Finally, we will update the subscription_plan_id on the subscription
+        $team->subscription()?->update(['subscription_plan_id' => $configuration->id]);
+
+        // And update the tier on the Team
         $team->update(['tier' => $tier]);
     }
 
@@ -349,15 +356,5 @@ final class StripeService extends Provider
             data: [],
             filename: env('APP_URL') . now()->format('Y-m-d')
         );
-    }
-
-    /**
-     * @param string|null $tier
-     *
-     * @return array
-     */
-    private static function determineTier(string $tier = null): array
-    {
-        return config(sprintf('payments.stripe.tiers.%s', $tier));
     }
 }
