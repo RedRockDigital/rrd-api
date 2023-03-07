@@ -3,10 +3,8 @@
 namespace RedRockDigital\Api\Services\Payments\Providers\Stripe;
 
 use RedRockDigital\Api\Services\Payments\PaymentsInterface;
-use RedRockDigital\Api\Models\{
-    Subscription,
-    Team
-};
+use RedRockDigital\Api\Models\Team;
+use RedRockDigital\Api\Models\Stripe\Subscription;
 use RedRockDigital\Api\Services\Payments\Providers\Provider;
 use RedRockDigital\Api\Services\Payments\Providers\Stripe\Enums\StripeMode;
 use RedRockDigital\Api\Services\Payments\Providers\Stripe\Exceptions\{

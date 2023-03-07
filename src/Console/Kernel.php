@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         // Misc
         $schedule->command('model:prune')->hourly();
         $schedule->command('prune-logs')->sundays();
+        $schedule->command('rrd:stripe-setup')->lastDayOfMonth('00:00');
 
         // Auth
         $schedule->command('send-registration-reminders')->dailyAt('08:00');
