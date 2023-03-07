@@ -23,10 +23,11 @@ trait HasInformable
     /**
      * Determine if the Owner can be informed of a type.
      *
-     * @param  InformEnums  $inform
+     * @param object $inform
+     *
      * @return bool
      */
-    public function canBeInformed(InformEnums $inform): bool
+    public function canBeInformed(object $inform): bool
     {
         // Find the informative record enum type via the informs table.
         // If it does, return true else false, via the ->exists() method.
@@ -34,10 +35,11 @@ trait HasInformable
     }
 
     /**
-     * @param  InformEnums  $inform
+     * @param object $inform
+     *
      * @return void
      */
-    public function inform(InformEnums $inform): void
+    public function inform(object $inform): void
     {
         // If the informative record does not exist,
         // We will then perform a creation against the owner.
@@ -47,10 +49,11 @@ trait HasInformable
     }
 
     /**
-     * @param  InformEnums  $inform
+     * @param object $inform
+     *
      * @return void
      */
-    public function unInform(InformEnums $inform): void
+    public function unInform(object $inform): void
     {
         // If the informative record exists,
         // We will perform a deletion against the owner.

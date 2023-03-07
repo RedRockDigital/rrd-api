@@ -22,8 +22,9 @@ if (!function_exists('team')) {
 
 if (!function_exists('actions')) {
     /**
-     * @param $action
-     * @param  mixed  ...$arguments
+     * @param       $action
+     * @param mixed ...$arguments
+     *
      * @return mixed
      */
     function actions($action, ...$arguments): mixed
@@ -36,8 +37,9 @@ if (!function_exists('vite')) {
     /**
      * Returns an absolute path to a Vite asset.
      *
-     * @param  string  $filename The asset filename/entrypoint to load
-     * @param  string  $buildDirectory Vite build directory
+     * @param string $filename       The asset filename/entrypoint to load
+     * @param string $buildDirectory Vite build directory
+     *
      * @return string
      *
      * @throws Exception
@@ -58,13 +60,13 @@ if (!function_exists('vite')) {
             $manifest = json_decode(file_get_contents($manifestPath), true);
 
             if (!$manifest[$filename]['file'] ?? null) {
-                throw new Exception('Unknown vite entrypoint '.$filename);
+                throw new Exception('Unknown vite entrypoint ' . $filename);
             }
 
-            return $buildDirectory.'/'.$manifest[$filename]['file'];
+            return $buildDirectory . '/' . $manifest[$filename]['file'];
         }
 
-        throw new Exception('Unable to load Vite manifest file at '.$manifestPath);
+        throw new Exception('Unable to load Vite manifest file at ' . $manifestPath);
     }
 }
 
@@ -72,8 +74,8 @@ if (!function_exists('upload_file')) {
     /**
      * Handles a file by moving it from tmp to perm storage
      *
-     * @param  string  $key
-     * @param  string  $disk
+     * @param string $key
+     * @param string $disk
      *
      * @return string
      */
@@ -103,5 +105,22 @@ if (!function_exists('terminate')) {
         if ($throwable->getCode() >= 500 && $throwable->getCode() <= 599) {
             throw $throwable;
         }
+    }
+}
+
+if (!function_exists('informable')) {
+    function informable(string $name): ?object
+    {
+        foreach (config('informables') as $key => $value) {
+            if ($name === $key) {
+                $inform = new StdClass();
+                $inform->name = $key;
+                $inform->value = $value;
+
+                return $inform;
+            }
+        }
+
+        return null;
     }
 }
