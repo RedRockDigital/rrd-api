@@ -19,8 +19,8 @@ class StripeIdempotencyKeyException extends Exception
      */
     public $code = Response::HTTP_INTERNAL_SERVER_ERROR;
 
-    public function __construct(string $key = '')
+    public function __construct(string $key = '', string $event = '')
     {
-        parent::__construct("Idempotency Key ($key) is in-process or has been completed already.");
+        parent::__construct("Idempotency Key ($key) for event ($event) is in-process or has been completed already.");
     }
 }

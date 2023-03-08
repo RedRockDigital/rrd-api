@@ -240,10 +240,11 @@ final class StripeService extends Provider
      * Determine if the Team has a current active Subscription
      *
      * @param Team|null $team
+     * @param bool      $isActive
      *
      * @return bool
      */
-    public function hasSubscription(?Team $team): bool
+    public function hasSubscription(?Team $team, bool $isActive = false): bool
     {
         $subscription = $team?->subscription();
 
@@ -251,7 +252,7 @@ final class StripeService extends Provider
             return false;
         }
 
-        return $subscription->stripe_status === StripeSubscription::STATUS_ACTIVE;
+        return $isActive  ? $subscription->stripe_status === StripeSubscription::STATUS_ACTIVE : true;
     }
 
     /**

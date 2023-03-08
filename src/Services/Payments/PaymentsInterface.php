@@ -15,7 +15,8 @@ interface PaymentsInterface
     /**
      * Get the User of the Team who owns the subscription
      *
-     * @param  Team|null  $team
+     * @param Team|null $team
+     *
      * @return User
      */
     public function getOwner(?Team $team): User;
@@ -23,7 +24,8 @@ interface PaymentsInterface
     /**
      * Create the Customer from the Owner of the Team
      *
-     * @param  Team|null  $team
+     * @param Team|null $team
+     *
      * @return mixed
      */
     public function createCustomer(?Team $team): mixed;
@@ -31,7 +33,8 @@ interface PaymentsInterface
     /**
      * Update the Customer of the Owner of the Team
      *
-     * @param  Team|null  $team
+     * @param Team|null $team
+     *
      * @return mixed
      */
     public function updateCustomer(?Team $team): mixed;
@@ -39,8 +42,9 @@ interface PaymentsInterface
     /**
      * Increase the amount of the Subscription
      *
-     * @param  Team|null  $team
-     * @param  int  $amount
+     * @param Team|null $team
+     * @param int       $amount
+     *
      * @return void
      */
     public function increaseSubscription(?Team $team, int $amount = 1): void;
@@ -48,8 +52,9 @@ interface PaymentsInterface
     /**
      * Decrease the amount of the Subscription
      *
-     * @param  Team|null  $team
-     * @param  int  $amount
+     * @param Team|null $team
+     * @param int       $amount
+     *
      * @return void
      */
     public function decreaseSubscription(?Team $team, int $amount = 1): void;
@@ -57,8 +62,9 @@ interface PaymentsInterface
     /**
      * Change the amount of the Subscription directly
      *
-     * @param  Team|null  $team
-     * @param  string|null  $tier
+     * @param Team|null   $team
+     * @param string|null $tier
+     *
      * @return void
      */
     public function changeSubscription(?Team $team, string $tier = null): void;
@@ -66,15 +72,18 @@ interface PaymentsInterface
     /**
      * Determine if the Team has a current active Subscription
      *
-     * @param  Team|null  $team
+     * @param Team|null $team
+     * @param bool      $isActive
+     *
      * @return bool
      */
-    public function hasSubscription(?Team $team): bool;
+    public function hasSubscription(?Team $team, bool $isActive = false): bool;
 
     /**
      * Return the current active subscription for the Team
      *
-     * @param  Team|null  $team
+     * @param Team|null $team
+     *
      * @return mixed
      */
     public function getSubscription(?Team $team): mixed;
@@ -82,8 +91,9 @@ interface PaymentsInterface
     /**
      * Add a Payment Method for the Team to use for a Subscription
      *
-     * @param  Team|null  $team
-     * @param  string  $pmId
+     * @param Team|null $team
+     * @param string    $pmId
+     *
      * @return bool
      */
     public function addPaymentMethod(?Team $team, string $pmId = ''): bool;
@@ -91,7 +101,8 @@ interface PaymentsInterface
     /**
      * Determine if the current Team has a default/active Payment Method
      *
-     * @param  Team|null  $team
+     * @param Team|null $team
+     *
      * @return mixed
      */
     public function hasPaymentMethod(?Team $team): bool;
@@ -99,7 +110,8 @@ interface PaymentsInterface
     /**
      * Fetch and return a list of the Payment Methods the Team has
      *
-     * @param  Team|null  $team
+     * @param Team|null $team
+     *
      * @return ?object
      */
     public function getPaymentMethods(?Team $team): ?object;
@@ -107,7 +119,8 @@ interface PaymentsInterface
     /**
      * Cancel the current Subscription for the Team
      *
-     * @param  Team|null  $team
+     * @param Team|null $team
+     *
      * @return void
      */
     public function cancelSubscription(?Team $team): void;
@@ -115,7 +128,8 @@ interface PaymentsInterface
     /**
      * Resume the current Subscription for the Team
      *
-     * @param  Team|null  $team
+     * @param Team|null $team
+     *
      * @return void
      */
     public function resumeSubscription(?Team $team): void;
@@ -123,7 +137,8 @@ interface PaymentsInterface
     /**
      * Retrieves all invoices for Team
      *
-     * @param  Team|null  $team
+     * @param Team|null $team
+     *
      * @return Collection|Invoice[]
      */
     public function getInvoices(?Team $team): Collection|array;
@@ -131,8 +146,9 @@ interface PaymentsInterface
     /**
      * Download a invoice for Team
      *
-     * @param  Team|null  $team
-     * @param  string|null  $id
+     * @param Team|null   $team
+     * @param string|null $id
+     *
      * @return mixed
      */
     public function downloadInvoice(?Team $team, string $id = null): mixed;

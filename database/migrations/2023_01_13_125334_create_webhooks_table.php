@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migration {
+    
     /**
      * Run the migrations.
      *
@@ -15,12 +16,12 @@ return new class () extends Migration {
         Schema::create('webhooks', static function (Blueprint $table) {
             $table->uuid('id')->primary();
 
-            $table->string('originator');
-            $table->string('hook');
+            $table->string('provider');
+            $table->string('event');
             $table->json('payload');
-            $table->json('response')->nullable();
+            $table->json('output')->nullable();
             $table->string('status')->default('queued');
-            $table->text('idem_key');
+            $table->text('identifier');
 
             $table->timestamps();
         });

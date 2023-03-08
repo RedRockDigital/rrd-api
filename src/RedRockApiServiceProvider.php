@@ -5,11 +5,12 @@ namespace RedRockDigital\Api;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Cashier;
 use Laravel\Passport\Passport;
-use RedRockDigital\Api\Console\Commands\InstallCommand;
-use RedRockDigital\Api\Console\Commands\PruneLogs;
-use RedRockDigital\Api\Console\Commands\SendRegistrationReminders;
-use RedRockDigital\Api\Console\Commands\SetupCommand;
-use RedRockDigital\Api\Database\Seeders\Local\LocalSeeder;
+use RedRockDigital\Api\Console\Commands\{
+    InstallCommand,
+    PruneLogs,
+    SendRegistrationReminders,
+    SetupCommand
+};
 use RedRockDigital\Api\Http\Middleware\SecurityHeaders;
 use RedRockDigital\Api\Models\Group;
 use Illuminate\Auth\Notifications\VerifyEmail;
@@ -17,13 +18,15 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factories;
 use Illuminate\Contracts\Http\Kernel;
-use RedRockDigital\Api\Providers\AuthServiceProvider;
-use RedRockDigital\Api\Providers\EventServiceProvider;
-use RedRockDigital\Api\Providers\NovaServiceProvider;
-use RedRockDigital\Api\Providers\PaymentServiceProvider;
-use RedRockDigital\Api\Providers\RouteServiceProvider;
-use RedRockDigital\Api\Providers\VaporUiServiceProvider;
-use RedRockDigital\Api\Services\Payments\Payments;
+use RedRockDigital\Api\Providers\{
+    AuthServiceProvider,
+    EventServiceProvider,
+    NovaServiceProvider,
+    PaymentServiceProvider,
+    RouteServiceProvider,
+    TelescopeServiceProvider,
+    VaporUiServiceProvider
+};
 use Spatie\Csp\AddCspHeaders;
 
 class RedRockApiServiceProvider extends ServiceProvider
@@ -93,6 +96,9 @@ class RedRockApiServiceProvider extends ServiceProvider
 
         // Load Vapor UI Service Provider
         $this->app->register(VaporUiServiceProvider::class);
+
+        // Load Telescope Service Provider
+        $this->app->register(TelescopeServiceProvider::class);
     }
 
     /**
@@ -104,20 +110,14 @@ class RedRockApiServiceProvider extends ServiceProvider
         // TODO: Move payment service into contained repo.
         Cashier::ignoreMigrations();
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/auth-guards.php', 'auth.guards');
+        // Merge auth guards
+        $this->mergeConfigFrom(__DIR__ . '/../config/mergables/auth-guards.php', 'auth.guards');
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/auth-providers.php', 'auth.providers');
-    }
+        // Merge auth providers
+        $this->mergeConfigFrom(__DIR__ . '/../config/mergables/auth-providers.php', 'auth.providers');
 
-    /**
-     * Load the routes for the application.
-     *
-     * @return void
-     */
-    private function loadRoutes(): void
-    {
-        $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
-        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        // Merge stripe webhooks
+        $this->mergeConfigFrom(__DIR__ . '/../config/mergables/webhooks-stripe.php', 'webhooks.stripe');
     }
 
     /**
@@ -185,6 +185,8 @@ class RedRockApiServiceProvider extends ServiceProvider
                 __DIR__ . '/../config/csp.php'         => config_path('csp.php'),
                 __DIR__ . '/../config/nova.php'        => config_path('nova.php'),
                 __DIR__ . '/../config/informables.php' => config_path('informables.php'),
+                __DIR__ . '/../config/webhooks.php'    => config_path('webhooks.php'),
+                __DIR__ . '/../config/telescope.php'   => config_path('telescope.php'),
             ]);
 
             // Registering package commands.

@@ -5,44 +5,39 @@ namespace RedRockDigital\Api\Models;
 use RedRockDigital\Api\Traits\HasUuid;
 use ArrayAccess;
 use Barryvdh\LaravelIdeHelper\Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\{
+    Builder,
+    Model,
+    Collection
+};
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Spatie\Tags\HasTags;
 
 /**
  * RedRockDigital\Api\Models\Webhook
  *
- * @property string           $id
- * @property string           $originator
- * @property string           $hook
- * @property mixed            $payload
- * @property mixed|null       $response
- * @property string           $status
- * @property string           $idem_key
- * @property Carbon|null      $created_at
- * @property Carbon|null      $updated_at
- * @property Collection|Tag[] $tags
- * @property-read int|null    $tags_count
+ * @property string      $id
+ * @property string      $provider
+ * @property string      $event
+ * @property mixed       $payload
+ * @property mixed|null  $output
+ * @property string      $status
+ * @property string      $identifier
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @method static Builder|Webhook newModelQuery()
  * @method static Builder|Webhook newQuery()
  * @method static Builder|Webhook query()
  * @method static Builder|Webhook whereCreatedAt($value)
- * @method static Builder|Webhook whereHook($value)
+ * @method static Builder|Webhook whereEvent($value)
  * @method static Builder|Webhook whereId($value)
- * @method static Builder|Webhook whereOriginator($value)
+ * @method static Builder|Webhook whereProvider($value)
  * @method static Builder|Webhook wherePayload($value)
- * @method static Builder|Webhook whereResponse($value)
+ * @method static Builder|Webhook whereOutput($value)
  * @method static Builder|Webhook whereStatus($value)
- * @method static Builder|Webhook whereIdemKey($value)
+ * @method static Builder|Webhook whereIdentifier($value)
  * @method static Builder|Webhook whereUpdatedAt($value)
- * @method static Builder|Webhook withAllTags(ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static Builder|Webhook withAllTagsOfAnyType($tags)
- * @method static Builder|Webhook withAnyTags(ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
- * @method static Builder|Webhook withAnyTagsOfAnyType($tags)
- * @method static Builder|Webhook withoutTags(ArrayAccess|\Spatie\Tags\Tag|array|string $tags, ?string $type = null)
  *
  * @mixin Eloquent
  */
@@ -53,19 +48,75 @@ final class Webhook extends Model
     use HasUuid;
 
     /**
-     * @var string[]
+     * @var array $fillable
      */
     protected $fillable = [
-        'originator',
-        'hook',
+        'provider',
+        'event',
         'payload',
-        'response',
+        'output',
         'status',
-        'idem_key',
+        'identifier',
     ];
 
+    /**
+     * @var array $casts
+     */
     protected $casts = [
-        'payload'  => 'json',
-        'response' => 'json',
+        'payload' => 'json',
+        'output'  => 'json',
     ];
+
+    /**
+     * Check if a webhook with the given idem key exists
+     *
+     * @param string $identifier
+     *
+     * @return bool
+     */
+    public static function verify(string $identifier, string $event): bool
+    {
+        return self::whereIdentifier($identifier)
+            ->whereEvent($event)
+            ->whereIn('status', ['processing', 'completed'])
+            ->exists();
+    }
+
+    /**
+     * Marks a webhook as failed due to an exception
+     *
+     * @param string $key
+     * @param string $error
+     *
+     * @return void
+     */
+    public function markAsFailed(string $error = ''): void
+    {
+        $this->update([
+            'status' => 'failed',
+            'output' => [
+                'message' => 'An exception was thrown while processing the webhook',
+                'error'   => $error
+            ]
+        ]);
+    }
+
+    /**
+     * Set the response for a webhook
+     *
+     * @param string $customerId
+     * @param string $teamId
+     * @param string $message
+     *
+     * @return void
+     */
+    public function setTeamResponse(string $teamId, string $message): void
+    {
+        $this->update([
+            'status' => 'completed',
+            'output'  => [
+                'message' => "Team ($teamId) $message",
+            ]
+        ]);
+    }
 }
